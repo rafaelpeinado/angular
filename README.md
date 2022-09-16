@@ -50,3 +50,88 @@ Quando chamamos um serviço em um componente e navegamos para fora e voltamos, o
 #### Getting the Most from This Course
 [Github: Deborah Kurata - Angular NgRx Getting Started](https://github.com/DeborahK/Angular-NgRx-GettingStarted)
 
+
+
+### The Redux Pattern
+#### Introduction
+##### Redux Principles
+* Há apenas uma única fonte de verdade para o estado do aplicativo chamada Store
+* State é somente leitura e a única maneira de alterar o estado é com dispatch de actions
+* As mudanças no Store são feitas por funções puras chamadas reducers
+
+
+#### Store
+Store é o objeto que contém todo o estado do projeto
+
+##### What Should Not Go in the Store?
+* State não compartilhado ou disponibilizado nas rotas
+* Forms também não pertecem ao Store
+* Estruturas que ñao podem ser serializadas não devem esr colocadas no Store. Por exemplo, toda a rota não deve ser colocada no Store, porque não é serializada
+
+#### Actions
+##### Dispatch an Action to Change State
+Exemplos de dispatch de actions
+* uma ação de login após envio de um formulário
+* uma ação de menu lateral após clicar no botão
+* recuperar a ação de dados ao inicializar seu componente
+* iniciar uma ação giratória global ao salvar dados
+
+Actions possuem atributos *type* que descrevem a action e podem ter dados opcionais associados a eles
+Exemplo de objeto: 
+{
+    type: 'LOGIN',
+    user: { username: 'Duncan', password: 'secret' }
+}
+
+
+#### Reducers
+##### Use Reducers to Change State
+Reducer são funções que especificam alterações no State em resposta a uma action.
+O que podemos fazer em reducer:
+* definir uma propriedade userDetails no login
+* definir a propriedade sideMenuVisible para true ao clicar no botão do menu lateral
+* definir sucesso nos dados recuperados na inicialização do componente
+* definir a propriedade globalSpinnerVisible para verdadeiro enquanto salva uma data
+
+##### Actions with Side Effects
+Reducers não podem ter efeitos colaterais
+
+##### Reducers Are Pure Functions
+Reducer é responsável por lidar com transições de um estado para o próximo estado da aplicação.
+Cada função reducer assume o estado inicial e uma seleção de funções que manipulam alterações de estado para suas associadas.
+Essas funções pegam o state atual e uma action e retornam um novo state
+
+##### Pure and Impure Functions
+Função pura é uma função que dados os mesmos argumentos, sempre retornará o mesmo valor sem efeitos colaterais observáveis.
+
+**Função Pura**
+function sum(a, b) {
+    const result = a + b;
+    return result;
+}
+
+**Função Impura**
+let c = 1;
+
+function sum(a, b) {
+    result = a + b + c;
+    return result;
+}
+
+
+#### Advantages of the Redux Pattern
+* Ter uma árvore de estados imutáveis e centralizada, isso torna as alterações mais explícitas e previsíveis
+* Performance
+* Facilita a escrita de testes unitários
+* Ferramental é um grande benefício do Redux
+* Facilita a comunicação e direcionamento de componentes
+
+
+
+
+
+
+
+
+
+
