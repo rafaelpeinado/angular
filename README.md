@@ -38,7 +38,7 @@ Quando chamamos um serviço em um componente e navegamos para fora e voltamos, o
 ##### Use NgRx Quando
 * há muito estado em serviços: o store fornece um local conveniente.
 * houver excesso de solicitações HTTP: o store fornece um cache do lado do cliente para ser usado quando necessário
-* houver interações complexas de componentes: o redcuer atualiza o store e o store notifica todos os subscritos
+* houver interações complexas de componentes: o reducer atualiza o store e o store notifica todos os subscritos
 * algo não estiver funcionando: é uma ótima ferramenta que nos ajuda a ver actions e state.
 
 ##### Não Use NgRx Quando
@@ -127,7 +127,60 @@ function sum(a, b) {
 * Facilita a comunicação e direcionamento de componentes
 
 
+### First Look at NgRx
+#### Demo: Setting up the Sample Application
+Na aplicação não há um servidor back-end para esse aplicativo. Em vez disso, estamos usando uma biblioteca [Angular in-memory-web-api](https://github.com/angular/in-memory-web-api) que emula um servidor back-end e dá espaço a uma multidão ou cria operações de leitura, atualizaçao e exclusão. Esta é a mesma biblioteca usada pela documentação Angular. Vamos usar essa aplicação para não precisar configurar e instalar um servidor back-end.
+Como estamos usando o in-memory-web-api, quaisquer alterações feitas nesses dados são only-in-memory e eles serão perdidos se atualizarmos o navegador ou reiniciar o aplicativo.
 
+
+#### Installing the Store
+NgRx é composto por um conjunto de pacotes
+O único pacote requerido é o [@ngrx/store](https://ngrx.io/guide/store)
+
+**Store** fornece um contêiner na mamória pra o **State** do aplicativo. Esse **Store** fornece uma única fonte de confiável para o aplicativo, pois é o único local em que o estado está armazenado, por consequência, o único local para ler esse estado. Isso garante resultados consistentes.
+
+O **Store** é runtime-onlye, para que o estado não seja mantido se o usuário atualizar a página ou se o usuário sair da aplicação.
+
+O **store** é simplemente um JSON que contém o estado da aplicação
+
+#### Initializing the Store
+Quando configuramos o NgRx na aplicação, inicializamos o store com seu reducer.
+**Obs.:** o reducer executa uma action no state existente, cria um novo state e atualiza o armazenamento com esse novo state.
+Ou seja, faz sentido associar o Store ao seu Reducer que cria um state para esse store.
+
+Código para inicializar o Store
+StoreModule.forRoot(reducer)
+StoreModule.forRoot({}, {})
+
+O ideal é organizar o state por feature criando hierarquia de propriedades. Para isso, vamos criar vários reducers um para cada slice (ou seja, um para products, um para users, etc) de state das features.
+
+##### Feature Module State Composition
+Técnica utilizada para compor nosso estado da aplicação a partir de nossos reducers de módulos de feature.
+Sendo assim, no App Module inicializamos com StoreModule.forRoot(reducer), como o nosso reducer inicial
+E depois em cada Module, por exemplo, Product Module inserimos StoreModule.forFeature('products', productReducer)
+
+Ainda podemos dividir um reducer em reducers menores, principalmente quando o state dessa classe é muito grande.Por exemplo, Products tem ProductList e ProductData, podemos fazer:
+StoreModule.forFeature('products', 
+    {
+        productList: listReducer,
+        productData: dataReducer
+    }
+)
+
+
+#### Demo: Initializing the Store
+O StoreModule.forRoot({}, {}) recebe dois parâmetros
+* O primeiro é o reducer
+* o segundo é opcional, sendo um objeto configuração
+
+
+#### Defining the State and Actions
+Precisamos de um propriedade showProductCode no state e podemos criar uma action chamada toggleProductCode (ao invés de criar duas chamadas showProductCode e hideProductCode), mas não importa escolher uma ou duas actions nesse cenário.
+
+#### Building a Reducer to Process Actions
+Ao dar dispatch numa action, ele acionará um reducer que fará todo o processo, clonará o state, mas o novo state com as alteração da action desejada. Depois o reducer substitui o slice do objeto.
+
+Cada transição de estado deve ser síncrona
 
 
 
