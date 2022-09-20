@@ -183,6 +183,19 @@ Ao dar dispatch numa action, ele acionará um reducer que fará todo o processo,
 Cada transição de estado deve ser síncrona
 
 
+#### Dispatching an Action to Change State
+O Store inicializou nosso state e nossa action para encontrar o nosso reducer implementado, mas nada acontece até dar dispatch na action. 
+
+##### Dispatching an Action
+Antes de dar dispatch de uma action em um componente devemos injear o Store nesse componente, como qualquer outro serviço.
+
+
+#### Subscribing to the Store to Get State Changes
+this.store.select('products'): Usamos os método select que especifica qual slice do estado que desejamos.
+Ou, como store é um observable, podemos usar o método pipe **this.store.pipe(select('products'))** 
+Porém o recomendado é usar o select **this.store.select('products')** e modelar os resultados no selector, não no componente.
+
+
 
 
 
