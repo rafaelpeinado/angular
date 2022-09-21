@@ -236,5 +236,10 @@ export interface State extends AppState.State {
 **import * as AppState** ao invés de importar cada interface individual do nosso arquivo state, nós importamos * que importa todos os membros exportados e para facilitar o acesso à interface definimos o nome AppState que é uma palavra-chave.
 
 
+#### Setting Initial State Values
+Quando um componente faz subscribe pela primeira vez no Store, ele obtém o valor atual do slice do state solicitado.
+
+
+
 
 
