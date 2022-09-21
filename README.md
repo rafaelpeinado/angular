@@ -211,6 +211,6 @@ StoreDevtoolsModule.instrument({
 })
 
 
-
+### Strongly Typing the State
 
 
