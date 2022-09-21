@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { State } from '../state/product.reducer';
+import { getShowProductCode, State } from '../state/product.reducer';
 
 @Component({
   selector: 'pm-product-list',
@@ -39,15 +39,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
       error: err => this.errorMessage = err
     });
 
-    // TODO: Unsubscribe
-    this.store.select('products').subscribe(
-      products => this.displayCode = products.showProductCode
-      // como está fortemente tipado, não precisamos mais verificar, pois não vem mais undefined
-      // {
-      // if (products) {
-      //   this.displayCode = products.showProductCode;
-      // }
-      // }
+    // // TODO: Unsubscribe
+    // this.store.select('products').subscribe(
+    //   products => this.displayCode = products.showProductCode
+    //   // como está fortemente tipado, não precisamos mais verificar, pois não vem mais undefined
+    //   // {
+    //   // if (products) {
+    //   //   this.displayCode = products.showProductCode;
+    //   // }
+    //   // }
+    // );
+
+    this.store.select(getShowProductCode).subscribe(
+      showProductCode => this.displayCode = showProductCode
     );
   }
 

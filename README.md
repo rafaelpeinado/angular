@@ -239,6 +239,42 @@ export interface State extends AppState.State {
 #### Setting Initial State Values
 Quando um componente faz subscribe pela primeira vez no Store, ele obtém o valor atual do slice do state solicitado.
 
+#### Building selectors
+* Se mudarmos a estrutura do Store, reorganizando-a em sub-slices, por exemplo, teremos que encontrar cada selector e atualizar o código.
+* Como o código de select está atualmente, o código observa alteraçãos em qualquer propriedade no slice de state do produto. Ou seja, esse código é notificado mesmo que a propriedade showProductCode não tenha sido alterada.
+this.store.select('products').subscribe(
+      products => this.displayCode = products.showProductCode
+    );
+
+**Selector** é uma consulta reutilizável do Store. O selector nos permite manter uma cópia do state do store, mas projetada em diferentes formas, o que facilita o acessos por nossos componentes e serviços.
+
+##### Benefits of selectors
+* Fornece uma API fortemente tipada
+* Separa o store dos componentes, para que eles não precisem saber sobre a estrutura do store. Isso permite reorganizar ou dividir o state de maneiras diferentes ao longo do tempo, sem precisar atualizar todos os componentes.
+* Pode encapsular transformações complexas de dados.
+* É reutilizável, então qualquer componente pode acessar o mesmo pedaço do state da mesma maneira.
+* São minimizados, ou seja, os dados são cache, exceto se o state for alterado.
+
+Existem dois tipos de selectors fornecidos pelo NgRx
+* o primeiro é um seletor de recurso de criação. Essa função nos permite obter um slice de uma feature no state, simplemente informando seu nome.
+
+const getProductFeatureState = createFeatureSelector< ProductState >('products');
+
+* o segundo é uma seletor de criação. Essa função nos permite obter qualquer estado, compondo seletores para navegar na árvore de estados. Quando usamos essa função, ele seleciona o pedaço especificado do estado e retorna seu valor.
+
+export const getShowProductCode = createSelector(
+    getProductFeatureState,
+    state => state.showProductCode
+);
+
+
+Caso o store sofra alguma mudança de estrutura, basta alterar no selector e o componente continuará tendo a mesma resposta.
+
+Um selector deve ser uma **função pura**.
+
+
+
+
 
 
 
