@@ -196,6 +196,19 @@ Ou, como store é um observable, podemos usar o método pipe **this.store.pipe(s
 Porém o recomendado é usar o select **this.store.select('products')** e modelar os resultados no selector, não no componente.
 
 
+### Developer Tools and Debugging
+#### Installing the Tools
+##### Steps to Install the Redux Store Dev Tools
+* Instalar a extensão para navegador [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+* Instalar [@ngrx/store-devtools](https://ngrx.io/guide/store-devtools/install)
+* Inicializar @ngrx/store-devtools Module
+
+Para inicializar o DevTools no Module, precisa inserir
+StoreDevtoolsModule.instrument({
+    name: 'APM Demo App DevTools' - o nome da aplicação
+    age: 25 - ou seja, passando esse limite as ações mais antigas são removidas
+    logOnly: environment.production - desativa todos os recursos de extensão, como debugging
+})
 
 
 
