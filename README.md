@@ -212,5 +212,29 @@ StoreDevtoolsModule.instrument({
 
 
 ### Strongly Typing the State
+#### Extending the State Interface for Lazy Loading features
+Quando criamos um módulo lazy loading, esse pacote é empacotado independentemente, e quando o usuário acessa a aplicação, ele é baixado do servidor, separado do pacote principal de aplicativos.
+
+Se usarmos:
+export interface State {
+    products: ProductState;
+    users: UserState;
+}
+perderemos nosso lazy loading. Sendo assim, para mantê-lo, podemos usar da seguinte forma:
+Nesse caso, podemos deixar apenas o User, pois não é lazy loading
+export interface State {
+    users: UserState;
+}
+
+então, em products podemos usar a seguinte forma para incluir nosso Product no state
+import * as AppState from '../../state/app.state'; 
+
+export interface State extends AppState.State {
+    products: ProductState;
+}
+
+**import * as AppState** ao invés de importar cada interface individual do nosso arquivo state, nós importamos * que importa todos os membros exportados e para facilitar o acesso à interface definimos o nome AppState que é uma palavra-chave.
+
+
 
 
