@@ -273,7 +273,23 @@ Caso o store sofra alguma mudança de estrutura, basta alterar no selector e o c
 Um selector deve ser uma **função pura**.
 
 
+#### Composing Selectors
+Cada selector com o createSelector é composto a partir do selector de features, mas não estamos limitados a um. Podemos compor vários seletores para criar um único seletor.
+Vamos supor que ao invés de eu mandar o currentProduct fosse currentProductId, porém eu gostaria de mandar o currentProduct todo e não apenas o Id. Podemos criar:
 
+const getProductFeatureState = createFeatureSelector< ProductState >('products');
+
+export const getCurrentProductId = createSelector(
+    getProductFeatureState,
+    state => state.currentProductId
+);
+
+export const getCurrentProduct = createSelector(
+    getProductFeatureState,
+    getCurrentProductId,
+    (state, currentProductId) => 
+        state.products.find(p => p.id === currentProductId)
+);
 
 
 
