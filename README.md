@@ -292,6 +292,28 @@ export const getCurrentProduct = createSelector(
 );
 
 
+### Strongly Typing Action with Action Creators
+#### Building Action Creators
+##### Benefits of Strongly Typed Actions
+* Ajuda a evitar erros ortográficos ou de digitação
+* Melhora a experiência das ferramentas
+* Documenta um conjunto bem definido de ações válidas
+
+##### Action Creators Using createAction
+export const toggleProductCode = createAction('[ Product ] Toggle Product Code');
+
+[ Product ] - slice que a action está modificando no state. Também podemos ser mais específicos usando também o nome da API ou o nome do componente, por exemplo [ Product API ] ou [ Product Edit Page ]
+
+##### Defining Actions with Data
+Algumas ações requerem dados associativos, por exemplo, quando o usuário clica em produto para exibir detalhes, é possível editar o produto selecionado. Ou seja, a ação do currentProduct precisa especificar o produto selecionado para que o reducer possa adicionar a seleção ao store. As páginas de edição do produto são notificadas e podem ler essa seleção do store para exibir o produto apropriado para a edição.
+Nós indicamos que temos dados associados usando um segundo argumento no createAction. Por exemplo:
+
+export const setCurrentProduct = createAction(
+    '[ Product ] Set Current Product',
+    props< { product: Product } >()
+)
+
+
 
 
 
