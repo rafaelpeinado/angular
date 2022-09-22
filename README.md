@@ -345,7 +345,10 @@ productSelected(product: Product): void {
 * o segundo argumento é o manipulador que executa a alteração de estado necessária para a ação específica que é executada no estado atual do armazenamento. E, **caso a ação tenha dados associados**, devemos inserí-los.
 
 
-
+#### Using Actions and Selectors for Component Communication
+##### Component Communication
+Quando queremos fazer comunicação entre componentes, podemos dar o seguinte exemplo:
+Quando o usuário seleciona um produto o List Component dá um dispatch na action de currentProduct. O reducer processa a action e atualiza o store com o currentProduct. Os componentes List Component e Edit Component são inscritos por meio de um selector e são notificados quando há alguma mudança.
 
 
 
