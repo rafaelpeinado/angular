@@ -364,6 +364,24 @@ changeSelectedProduct(selectedProduct: Product | null): void {
 
 
 
+#### Defining Actions for Complex Operations
+As vezes, nossas actions invocam operações mais complexas, como chamar um servidor backend como, por exemplo, load, update, create e delete.
+Para actions mais complexas, apenas uma única ação não é suficiente. Iniciamos a operação complexa e configuramos ações para responder com base no resultado dessa operação.
+
+O caminho para requisitar uma informação do servidor é:
+O componente dá dispatch em uma action. O reducer processa essa ação, mas como não possue dados, não gera um novo state. O reducer chama um service para emitir um http request. O servidor retorna essas informações para o service e o service **faz um novo dispatch para action de sucesso**, pois os reducers são funções puras. O reducer processa essa action e é gerado um novo state e atualiza o store.
+
+**Geralmente definimos três actions para operações complexas:**
+* uma para a operação em si
+* uma para conclusão bem-sucedida da operação
+* e outra para um erro ou falha
+
+
+
+
+
+
+
 
 
 
