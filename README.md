@@ -313,6 +313,38 @@ export const setCurrentProduct = createAction(
     props< { product: Product } >()
 )
 
+#### Using Strongly Typed Actions
+Devemos importar todos os membros exportados e, para facilitar o acesso, usamos ProductActions
+
+##### Processing an Action with Data
+Para acessar as actions que tenham dados de associação a partir do nosso reducer, fazemos da seguinte forma:
+on(ProductActions.setCurrentProduct, (state, action): ProductState => {
+    return {
+        ...state,
+        currentProduct: action.product
+    };
+})
+
+##### Dispatching an Action
+this.store.dispatch(ProductActions.toggleProductCode());
+
+##### Dispatching an Action with Data
+productSelected(product: Product): void {
+    this.store.dispatch(ProductActions.setCurrentProduct(
+        { product: product }
+    ));
+}
+Se o nome da chave for igual ao da variável, podemos simplicar usando a sintaxe abreviada da seguinte forma: 
+productSelected(product: Product): void {
+    this.store.dispatch(ProductActions.setCurrentProduct({ product }));
+}
+
+
+#### Demo: Using Strongly Typed Actions
+* O primeiro argumento da função **on** é a action.
+* o segundo argumento é o manipulador que executa a alteração de estado necessária para a ação específica que é executada no estado atual do armazenamento. E, **caso a ação tenha dados associados**, devemos inserí-los.
+
+
 
 
 
