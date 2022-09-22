@@ -351,4 +351,21 @@ Quando queremos fazer comunicação entre componentes, podemos dar o seguinte ex
 Quando o usuário seleciona um produto o List Component dá um dispatch na action de currentProduct. O reducer processa a action e atualiza o store com o currentProduct. Os componentes List Component e Edit Component são inscritos por meio de um selector e são notificados quando há alguma mudança.
 
 
+#### Demo: Communicating with the Edit Component
+A implementação original usava:
+private selectedProductSource = new BehaviorSubject< Product | null >(null);
+selectedProductChanges$ = this.selectedProductSource.asObservable();
+O BehaviorSubject retém o último valor selecionado e transmite as notificações de alteração para qualquer assinante.
+changeSelectedProduct(selectedProduct: Product | null): void {
+    this.selectedProductSource.next(selectedProduct);
+}
+
+**Curso para mais detalhes: Angular Component Communications**
+
+
+
+
+
+
+
 
