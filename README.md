@@ -419,7 +419,27 @@ EffectsModule.forRoot([]);
 O efeitos são informado nessa matriz.
 
 
-####
+#### SwitchMap Versus MergeMap 
+##### RxJS Operators
+Frequentemente os efeitos são transmitidos aos fazer requisições de HTTP que retornam Observables. Dependendo do operador que escolhermos, podemos cancelar requisições em andamento ou fazer requests fora de ordem se novas ações são despachadas contra o mesmo efeito que usamos. 
+Usamos o operador **mergeMap** em nosso effect para mapear as actions observables e mergear qualquer observable interno que é retornado do nosso serviço Angular dentro de um único fluxo observable.
+Também poderia ter usado o operador **switchMap**. Mas escolher o operador errado, podemos criar condições inesperadas de corridas.
+
+* **switchMap:** cancela a subscription/requisição atual se um novo valor for emitido e pode causar uma condição de corrida. Isso signifca que se alguém envia uma segunda ação do produto antes do primeiro produto, a solicitação HTTP retorna o seu efeito a primeira solicitação HTTP em andamento será cancelada e o produto pode não ser salvo, levando a uma possível condição de corrida. **Use esse operador para get requests ou cancelar requests de pesquisa.**
+
+* **concatMap:** executa as subscriptions/requests em ordem e é menos performático. Ou seja, espera o término da última para começar a próxima. **Use esse operador para get, post and put requests quando a ordem for importante.**
+
+* **mergeMap:** executa as subscriptions/requests em paralelo e é mais performático que o concatMap, mas não garante a ordem. **Use esse operador para get, put, post and delete requests quando a ordem não for importante.**
+
+* **exhaustMap:** Ignora todas as subscriptions/requests subsequentes até que o request atual seja finalizado. **Use esse operador para login quando não queremos mais fazer ou enfileiras requisições até que a primeira esteja finalizada.**
+
+Esses operadores pertencem à biblioteca [RxJS](https://rxjs.dev/).
+
+
+
+
+
+
 
 
 
