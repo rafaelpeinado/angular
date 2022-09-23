@@ -377,9 +377,49 @@ O componente dá dispatch em uma action. O reducer processa essa ação, mas com
 * e outra para um erro ou falha
 
 
+### Working with Effects
+#### Introduction
+As vezes, nossas ações precisam de operações assíncronas ou outras com efeitos colaterais. Por exemplo, recuperar ou salvar dados em um servidor back-end.
+
+Há partes do código que terão efeitos colaterais por design e é por isso que usamos a biblioteca [@ngrx/effects](https://ngrx.io/guide/effects/install).
 
 
+#### What Are Effects?
+Nesse caso, um efeito colateral é uma operação que depende ou interage com um fonte externa, como dispositivos de estados ou uma API. Usar o request http para acessá-lo novamente no servidor, é um exemplo de efeito colateral.
 
+Podemos usar a biblioteca effects do NgRx para manter os componentes puros.
+
+
+##### Effects Keep Components Pure
+A maioria dos aplicativos precisam recuperar dados.
+* Os componentes não são os melhores lugares para gerenciar códigos com efeitos colaterais.
+* Não desejamos lidar com efeitos colaterais em funções reducer, na verdade, nem podemos dar dispatch em uma action em uma função reducer.
+* **O melhor lugar para gerenciar efeitos colaterais** é o effects que funciona executando uma ação, realiza algum trabalho e da dispatch uma nova action, geralmente um sucesso ou de falha.
+
+Sendo assim, o novo diagrama ficaria:
+O componente dá dispatch em uma action. A action pode ser processada por dois lugares. O próprio reducer ou pelo effects. Nesse caso será o effects que processará essa action após passar pelo reducer. O effects acionará o serviço que buscará as informações no servidor. Em caso de sucesso, o servidor retorna os dados para o serviço. O serviço transmite as informações para o effects que dá dispatch em outra action. Desta vez, uma action com carregamento de sucesso do produto. O reducer executa essa action com os produtos e atualiza o state como os produtos adicionados. Em seguida envia as informações para o selector. O componente inscrito recebe a notificação dessa alteração do store.
+
+
+##### Benefits of Effects
+* Mantém os componentes puros, removendo os eventos com efeitos colaterais
+* Isola os efeitos colaterais em um local central
+* E facilitam os testes dos efeitos colaterais isolados
+
+
+#### Defining an Effect
+* Effects é um tipo de serviço do Angular, então, no seu núcleo, ele é como qualquer outro serviço Angular com decorator Injectable no topo da classe do TypeScript.
+* No constructor, injetamos as actions Observables da biblioteca NgRx que emitem uma action toda vez que uma sofre dispatch nossa aplicação após o reducer do último state.
+* Também injetamos o serviço que queremos fazer a requisição http.
+* Criamos uma varíavel assíncrona que recebe createEffect
+* Usamos a action observable que injetamos no construtor e precisamos filtrar as actions que não estamos interessados, exceto a de carregar produtos. Podemos fazer isso usando um **operador** do NgRx, chamado [ofType](https://v7.ngrx.io/api/effects/ofType) que aceita as ações que você deseja executar. Depois continuamos com **mergeMap**. Ele mescla cada ação emitida, chamando um serviço do Angular que retorna um observable e depois mescla essa essa chamadas em um único fluxo.
+
+
+##### Demo
+EffectsModule.forRoot([]);
+O efeitos são informado nessa matriz.
+
+
+####
 
 
 
