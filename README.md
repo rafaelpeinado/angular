@@ -435,6 +435,10 @@ Também poderia ter usado o operador **switchMap**. Mas escolher o operador erra
 
 Esses operadores pertencem à biblioteca [RxJS](https://rxjs.dev/).
 
+#### Demo: Async Pipe 
+O operador **tap** é uma maneira de manter o funcionamento anterior na nossa inscrição do método displayProduct, enquanto podemos utilizar o **pipe async** nos nossos componentes de template para manter o código limpo e a habilidade de auto desinscrever.
+
+
 
 
 
