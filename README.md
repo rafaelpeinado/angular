@@ -472,4 +472,13 @@ Um objeto ou array imutável não pode ser modificado depois de criado. Em vez d
 
 Nos NgRx queremos garantir a imutabilidade, então precisamos usar métodos imutavéis: **concat, ..., filter e map**.
 
+### Checklists and Summary
+* Identifique o state e as actions
+* Tipar fortemente o state e a construção dos selectors
+* Tipar fortemente as actions usando actions Creators
+* Dê dispatch em uma action para iniciar a operação
+* Construa os effects para processar essa action e dê dispatch em uma action de sucesso ou falha
+* Processe o sucesso ou a falhar no reducer
+
+
 

@@ -39,4 +39,32 @@ export class ProductEffects {
                 )
             )
     });
+
+    createProduct$ = createEffect(() => {
+        return this.action$
+            .pipe(
+                ofType(ProductActions.createProduct),
+                mergeMap(action =>
+                    this.productService.createProduct(action.product)
+                        .pipe(
+                            map(product => ProductActions.createProductSuccess({ product })),
+                            catchError(error => of(ProductActions.createProductFailure({ error })))
+                        )
+                )
+            )
+    });
+
+    deleteProduct$ = createEffect(() => {
+        return this.action$
+        .pipe(
+            ofType(ProductActions.deleteProduct),
+            mergeMap(action => 
+                this.productService.deleteProduct(action.productId)
+                .pipe(
+                    map(() => ProductActions.deleteProductSuccess({ productId: action.productId })),
+                    catchError(error => of(ProductActions.deleteProductFailure({ error })))
+                )
+                )
+        )
+    })
 }
