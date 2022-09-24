@@ -450,10 +450,26 @@ Há duas maneiras de implementar um form:
 **const product = { ...originalProduct, ...this.productForm.value };** nessa linha, não podemos simplesmente enviar os dados do formulário, pois nem todos os atributos são exibidos nele. Por isso, fazemos a cópia do original e do formulário. Nesse caso, seria o id.
 
 
+#### Processing the Success and Fail Actoins 
+Revisando a sintaxe:
+const updatedProducts = state.products.map(
+    item => action.product.id === item.id ? action.product : item);
+Não seria mais fácil escrever com um forEach loop? Porém, ao trabalhar com NgRx, precisamos ter cuidado para nunca alterar o state existente e, em vez disso, criar sempre um novo estado e nossas funções redutoras. 
+Como sabemos quais métodos de array podem mutar nosso state? 
 
 
+##### Immutable vs. Mutable Array Methods
+Um objeto ou array imutável não pode ser modificado depois de criado. Em vez disso, criamos um novo objeto ou array.
 
+* **push:** state.products.push(action.product) - o método push envia um ou mais elementos para uma array. Ele é **mutável**, pois adiciona diretamente os elementos ao array existente.
+* **concat:** state.products.concat(action.product) - o método concat cria um novo array a partir de uma ou mais arrays existentes. Ele é **imutável**, porque não modifica ou aumenta o array existente.
+* **operador spread ...:** [ ...state.products, actions.product ] - Ele é **imutável**, pois ele copia todos os elementos sem modificar o array original.
+* **shift:** state.products.shift() - o método shift remove o primeiro elemento de uma array. Ele é **mutável**, porque diminui diretamente a array existente.
+* **splice:** state.products.splice(0, 2) - o método splice altera o conteúdo de uma matriz removendo ou adicionando elementos. Ele é **mutável**, porque altera diretamente a array existente.
+* **filter:** state.products.filter(p => p.id !== action.product.id) - o método filter cria um novo array com todos os elementos que passaram nos testes fornecidos pela arrow function. Ele é **imutável**, porque não altera diretamente a array existente. Ele cria uma cópia antes.
+* **map:** state.products.map(p => p.id === action.product.id ? action.product : p) - o método map cria um novo array chamando a arrow function em todos os elementos do array original. Ele é **imutável**. Usamos map a qualquer momento que precisamos processar cada elemento de um array.
+* **forEach:** state.products.forEach(p => p.id === action.product.id ? action.product : p) - o método forEach executa a arrow functoin uma vez para cada elemento no array. Ele é **mutável**. Ele modifica os itens diretamente no array.
 
-
+Nos NgRx queremos garantir a imutabilidade, então precisamos usar métodos imutavéis: **concat, ..., filter e map**.
 
 
