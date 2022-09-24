@@ -439,9 +439,15 @@ Esses operadores pertencem à biblioteca [RxJS](https://rxjs.dev/).
 O operador **tap** é uma maneira de manter o funcionamento anterior na nossa inscrição do método displayProduct, enquanto podemos utilizar o **pipe async** nos nossos componentes de template para manter o código limpo e a habilidade de auto desinscrever.
 
 
+### Performing Update Operations
+Nesse módulo há um resumo sobre como deve ser usado o NgRx.
 
+#### Dispatching an Action
+Há duas maneiras de implementar um form:
+* **Template-driven Forms:** o ngModel fornece comunicação em duas vias. Two-way bindings conecta com as entradas de usuário do nosso model. Direta e imediatamente atualiza o nosso state com assim que o usuário faz atualizações. Isso vai contra o princípio do NgRx de imutabilidade dos dados.
+* **Reactive form:** **quando usamos NgRx nós usamos Reactive Forms**, pois os dados inseridos pelos usuários são armazenados em uma estrutura de formGroup.
 
-
+**const product = { ...originalProduct, ...this.productForm.value };** nessa linha, não podemos simplesmente enviar os dados do formulário, pois nem todos os atributos são exibidos nele. Por isso, fazemos a cópia do original e do formulário. Nesse caso, seria o id.
 
 
 
