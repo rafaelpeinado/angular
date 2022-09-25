@@ -44,7 +44,7 @@ export class ProductEffects {
         return this.action$
             .pipe(
                 ofType(ProductActions.createProduct),
-                mergeMap(action =>
+                concatMap(action =>
                     this.productService.createProduct(action.product)
                         .pipe(
                             map(product => ProductActions.createProductSuccess({ product })),
