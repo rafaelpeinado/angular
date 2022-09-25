@@ -535,3 +535,10 @@ Uma maneira de acumular exportações de vários módulo em um único módulo co
 * **Código limpo:** no nosso reducer temos menos código e nas outras partes da nossa aplicação podem usar uma única declaração de importação para acessar cada módulo de recursos, selectors, state e interface.
 
 
+#### Grouping Related Actions into Separate Files
+Actions capturam eventos, não comandos.
+As actions capturam dois tipos de eventos, incluindo a interação do usuário com a página e a interação externa por meio de API requests.
+Os eventos Set Current Product, Clear Current Product, Initialize Current Prodcut e Load são exemplos de eventos em nível de página.
+Já os eventos de Success e Failure acontecem durante API requests em camada de effects e services.
+
+
