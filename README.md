@@ -511,3 +511,13 @@ Container:
 
 ##### Sample Application Architecture
 O Container será **Product Shell Component**, enquanto o Presentational será **Product List Component**.
+
+
+#### Change Detection OnPush
+O padrão Container e Presentational nos permite aproveitar mais facilmente uma estratégia de detecçã ode alterações do Angular chamada **OnPush** para otimizar nossa perfomance das views.
+Na documentação do Angular temos: OnPush means that the change detector's mode will be initially set to CheckOnce". O que isso signifca para o nosso desempenho? Isso indica que um componente depende apenas das entradas e precisa ser verificado apenas uma vez. Se ele receber uma nova referência de entrada ou ocorrer uma das seguintes situações, o componente ou seus filhos emitirão um novo evento como um clique de botão.
+Para acionar a detecção de alterações em nosso componente, precisamos alterar a referência dos objetos de entrada, não apenas mutadas. Ou seja, isso é outro exemplo de como lidar com dados imutáveis que o Store do NgRx pode nos fornecer e tirar proveito dos padrões mais avançados.
+Com OnPush, qualquer evento assíncrono como XHR ou promise não acionará a detecção de mudanças e o template do componente não será atualizado.
+
+##### ChangeDetectionStrategy.Default
+Por padrão, o Angular usa o **ChangeDetectionStrategy.Default** e este não assume nada sobre a aplicação. Ou seja, toda vez que algo muda na aplicação, como resultado de qualquer evento, timers, XHR requests, promises, etc, a detecção de mudanças será executada em todos os componentes. Isso signifca que qualquer evento de clique a dados recebidos por uma chamada http, provoca a detecção de mudanças, potencialmente causando problemas de desempenho em seus aplicativos, à medida que verifica todos os componentes. 
