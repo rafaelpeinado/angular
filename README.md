@@ -520,4 +520,18 @@ Para acionar a detecção de alterações em nosso componente, precisamos altera
 Com OnPush, qualquer evento assíncrono como XHR ou promise não acionará a detecção de mudanças e o template do componente não será atualizado.
 
 ##### ChangeDetectionStrategy.Default
-Por padrão, o Angular usa o **ChangeDetectionStrategy.Default** e este não assume nada sobre a aplicação. Ou seja, toda vez que algo muda na aplicação, como resultado de qualquer evento, timers, XHR requests, promises, etc, a detecção de mudanças será executada em todos os componentes. Isso signifca que qualquer evento de clique a dados recebidos por uma chamada http, provoca a detecção de mudanças, potencialmente causando problemas de desempenho em seus aplicativos, à medida que verifica todos os componentes. 
+Por padrão, o Angular usa o **ChangeDetectionStrategy.Default** e este não assume nada sobre a aplicação. Ou seja, toda vez que algo muda na aplicação, como resultado de qualquer evento, timers, XHR requests, promises, etc, a detecção de mudanças será executada em todos os componentes. Isso signifca que qualquer evento de clique a dados recebidos por uma chamada http, provoca a detecção de mudanças, potencialmente causando problemas de desempenho em seus aplicativos, à medida que verifica todos os componentes.
+
+
+#### Creating a Barrel with Index.ts Files
+##### Barrel
+Uma maneira de acumular exportações de vários módulo em um único módulo conveniente. O barrel por si só é um arquivo de módulo que exporta novamente exportações selecionadss para outros módulos.
+
+É muito comum em aplicações NgRx criar índice de ações, pois não é necessário informar todo o caminho, porque já é implícito.
+
+##### Benefits of State Index.ts Files
+* **API pública para State:** dizendo explicitamente o que deve ser compartilhado a partir deste módulo em vez de importar o estado de arquivos reducers individuais.
+* **Separação de Preocupações:** o reducer se torna um responsável apenas pela atualização do estado e temos um lugar para nossos selectors compartilhados.
+* **Código limpo:** no nosso reducer temos menos código e nas outras partes da nossa aplicação podem usar uma única declaração de importação para acessar cada módulo de recursos, selectors, state e interface.
+
+
