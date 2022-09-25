@@ -472,7 +472,7 @@ Um objeto ou array imutável não pode ser modificado depois de criado. Em vez d
 
 Nos NgRx queremos garantir a imutabilidade, então precisamos usar métodos imutavéis: **concat, ..., filter e map**.
 
-### Checklists and Summary
+#### Checklists and Summary
 * Identifique o state e as actions
 * Tipar fortemente o state e a construção dos selectors
 * Tipar fortemente as actions usando actions Creators
@@ -482,3 +482,32 @@ Nos NgRx queremos garantir a imutabilidade, então precisamos usar métodos imut
 
 
 
+### Archtectural Considerations
+#### Container Presentational Component Pattern
+O benefício do NgRx é que ele tira muita lógica dos componentes e move para o effects, reducers e Angular services.
+Isso nos ajuda a dividir os componentes em duas categorias: Apresentação e Contêiner.
+
+Presentational: 
+1. Encarregado em como apresentar as coisas 
+2. Marcador HTML e estilização CSS para renderizar as telas
+3. Não tem dependências com o restante da aplicação, como serviços ou store.
+4. Eles não especificam como os dados são carregados ou alterados, mas emitem eventos via @Outputs para chamar os contêineres para executar
+5. Recebe dados via @Inputs
+6. Podem conter outros componentes como seus filhos
+
+Container: 
+1. Encarregados em como executam/funcionam
+2. Renderizam um pouco ou nenhum de HTML e estilização CSS
+3. Tem injeção de dependências
+4. Possuem estado e especificam como os dados são carregados e alterados
+5. São rotas de alto nível para quais navegamos, por isso é muito comum que todas as rotas carreguem componentes de contêiner e tenham uma árvore composta.
+6. Podem coner outros componentes de apresentação ou de contêineres abaixo dele
+
+
+##### Benefits of Presentational and Container Components
+* **Performance:** o desempenho de visualização é um benefício essencial para seguir esse padrão, utilizando a estratégia de detecção de mudanças do Angular chamada de OnPush. OnPush permite ignorar a detecção de mudanças na apresentação componentes que não tiveram mudanças no @Inputs.
+* **Composição:** compor as páginas dos componentes que não estão fortemente acopladas faciliam a reutilização deles e entender melhor o seu UI e a aplicação.
+* **Facilitam os testes:** sem dependências ou serviços injetados para marcar e espionar componentes de apresentação, geralmente componentes puros que sempre retornam os mesmos resultados para as mesmas entradas.
+
+##### Sample Application Architecture
+O Container será **Product Shell Component**, enquanto o Presentational será **Product List Component**.
