@@ -541,4 +541,49 @@ As actions capturam dois tipos de eventos, incluindo a interação do usuário c
 Os eventos Set Current Product, Clear Current Product, Initialize Current Prodcut e Load são exemplos de eventos em nível de página.
 Já os eventos de Success e Failure acontecem durante API requests em camada de effects e services.
 
+### Final Words
+#### Recap 
+**NgRx Pattern**
+![NgRx Pattern](https://github.com/rafaelpeinado/angular/tree/pluralsight/ngrx-getting-started/assets/ngrx-pattern.jpg)
 
+
+#### Additional NgRx Libraries
+[@ngrx/entity](https://ngrx.io/guide/entity/install): 
+* Há bastante código necessário para criar actions e reducers para as entidades. Essa library ajuda com operações de Create, Read, Update e Delete (CRUD)
+* Fornece funções auxiliares para gerenciar coleções de entidades e criar reducers e selectors para operações de actions
+* Reduz a quantidade de código necessário para gerenciar as entidades
+
+[@ngrx/schematics](https://ngrx.io/guide/schematics/install): 
+* Fornecido como parte do CLI, ou seja, pode gerar código usando CLI (new new, ng generate). A equipe pode criar o próprio esquema para gerar ou adicionar código
+* É um conjunto de esquemas especificamente para gerar códigos NgRx, pode usar ng generate **store**, ng generate **action**, ng generate **reducer**, ng generate **effect**, ng generate **feature**, ng generate **container**, ng generate **entity**
+
+[@ngrx/router-store](https://ngrx.io/guide/router-store/install): 
+* Pode conectar as rotas do Angular ao Store
+* Essa biblioteca dá dispatch em actions de navegação de rotas e podemos processá-las como qualquer outra action
+
+[@ngrx/data](https://ngrx.io/guide/data/install): 
+* Abstrai o código da entidade
+* Pequenas configurações e seguindo algumas convenções, sem código:
+  * Sem actions ou action creator 
+  * Sem reducers
+  * Sem selectors
+  * Sem effects
+  * Sem geração de código
+Ao invés disso, definimos alguns metadados, registramos o módulo apropriado e tudo o mais é tratado na biblioteca no @ngrx/data
+* Oferece pontos de extensão para personalização
+* Usar essa biblioteca se desejamos ter os benefícios do NgRx para nossas entidades, mas não desejamos escrever nenhum código. **Mas isso significa que estamos desistindo de ter alguns controles de como o NgRx funciona com a entidades da apllicação.
+
+[@ngrx/component](https://ngrx.io/guide/component/install): 
+* Um conjunto de auxiliares para tornar possível aplicações mais reativas
+* É experimental e ainda não está pronto para produção
+* Atualmente, fornece duas APIs:
+  * ngrxPush pipe: programa a detecção de alterações ao inserir novos valores
+  * diretiva ngrxLet: que é semelhante ao pipe, mas não requer ngIf
+Como ainda é experimental, esses recursos não devem ser usados em produção.
+
+
+### Learning More 
+Cursos recomendados do Pluralsight
+* Play by Play Angular and ngrx
+* RxJS in Angular: Reactive Development
+* Angular Component Communication 
