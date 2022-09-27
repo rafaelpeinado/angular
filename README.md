@@ -544,7 +544,7 @@ Já os eventos de Success e Failure acontecem durante API requests em camada de 
 ### Final Words
 #### Recap 
 **NgRx Pattern**
-![NgRx Pattern](https://github.com/rafaelpeinado/angular/tree/pluralsight/ngrx-getting-started/assets/ngrx-pattern.jpg)
+[Imagem sobre NgRx Pattern](https://github.com/rafaelpeinado/angular/tree/pluralsight/ngrx-getting-started/assets/ngrx-pattern.jpg)
 
 
 #### Additional NgRx Libraries
