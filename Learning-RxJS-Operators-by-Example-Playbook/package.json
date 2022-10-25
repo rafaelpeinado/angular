@@ -1,0 +1,12 @@
+{
+    "name": "rxjs-examples",
+    "version": "1.0.0",
+    "description": "Samples of all RxJS operators",
+    "main": "",
+    "scripts": {},
+    "author": "David Mann",
+    "dependencies": {
+        "rxjs": "6.3.2"
+    },
+    "license": "MIT"
+}
