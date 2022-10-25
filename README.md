@@ -4,4 +4,4 @@ Os cursos foram separados por curso em cada branch. Ou pode clicar nos links aba
 
 * [Pluralsight - Angular NgRx: Getting Started](https://github.com/rafaelpeinado/angular/tree/pluralsight/ngrx-getting-started)
 * [Pluralsight - The Big Picture](https://github.com/rafaelpeinado/angular/tree/pluralsight/the-big-picture)
-* [Pluralsight - Learning RxJS Operators by Example Playbook](https://github.com/rafaelpeinado/angular/tree/pluralsight/pluralsight\learning-rxjs-operators-by-exemple-playbook)
+* [Pluralsight - Learning RxJS Operators by Example Playbook](https://github.com/rafaelpeinado/angular/tree/pluralsight/learning-rxjs-operators-by-exemple-playbook)
