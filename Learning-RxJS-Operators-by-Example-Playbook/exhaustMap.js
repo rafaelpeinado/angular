@@ -29,7 +29,7 @@ of('A', 'B', 'blocker', 'C')
                 case 'blocker':
                     return of(x).pipe(delay(10));
                 default:
-                    return of(x);
+                    return of(x); // nunca será emitido, por causa do atraso de 10 milissegundos do blocker que ainda está emitindo.
             }
         })
     )

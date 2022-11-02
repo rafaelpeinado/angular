@@ -62,14 +62,19 @@ O que tudo isso tem a ver com o observeOn? Este operador permite especificar exp
 
 ### SubscribeOn
 É semelhante ao **observeOn**. SubscribeOn altera o scheduler usado pela fonte observable. Isso é diferente de observeOn, que recebe os valores do observable em seu scheduler original ou padrão e, em seguida, faz reemissão em um novo scheduler.
+
 #### observeOn vs subscribeOn
 Os dois operadores são tão semelhantes e são tão confusos, pois não são usados com muita frequência, por isso não há muita informação sobre ele nas redes. 
+
 **Default** asap queued -> asap emitted -> async queued -> async queued -> immediate emitted
 Ou seja, foi exibido na mesma ordem que o código foi executado.
+
 **observeOn** asap queued -> async queued -> immediate emitted -> asap emitted -> async emitted
 Recebe cada valor da origem e o reemite em um novo scheduler. Agora a saída é diferente, mas a ordem de execução do código é a mesma. Aqui, a fonte ainda emite os valores na mesma ordem e tap é acionado, mostrando quando os dois primeiros valores são enfileirados como recebidos pelo tap, antes de serem reprogramados via observeOn. O immediate é emitido em seguida, porque não é reemitido. Esse é o valor vindo diretamente do código sem qualquer alteração do scheduler. Agora vemos seus valores saindo de seus novos schedulers. Primeiro o asap, depois o async.
+
 **subscribeOn** immediate emitted -> asap queued -> asap emitted -> async queued -> async emitted
 Altera o scheduler usado pela origem observable, em vez de receber os valores do observable no scheduler padrão e, em seguida, reemiti-los em um novo scheduler. Primeiro, vemos o immediate não programado sendo emitido. Nós não alteramos o scheduler em nosso código, por isso é processado imediatamente. Em seguida, vemos o asap emitido da fonte como registrado pelo tap e recebido pelos subscribers como registrado pelo nosso observer. Finalmente, vemos o async queued e emitted quando é processado pelo scheduler async, emitido da origem e processado pelo subscriber.
+
 #### Available Schedulers
 **AsapScheduler**, **AsyncScheduler** esses dois foram usados nos exemplos, mas existem outros como QueueScheduler, AnimationFrameScheduler, VirtualTimeScheduler, TestScheduler e podemos escrever nossos próprios.
 Para saber mais: https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/scheduling_and_concurrency.html
@@ -99,5 +104,72 @@ Ao invés de emitir apenas o valor que veio da origem, timeInterval agrupa esse 
 É semelhante ao **timeInterval**. Timestamp envolve todos os valores emitidos da fonte em um objeto que fornece o valor mais algumas informações adicionais. Para o timestamp, essa informação adicional é o timestamp de quando o valor foi emitido da fonte.
 Ele pode ser usado se precisarmos rastrear quando os valores foram fornecidos para auditoria ou armazenamento em cache ou algo assim, esse operador fornecerá tanto o valor quanto as informações adicionais.
 { **value:** (value), **timestamp:** (timestamp) }
+
+
+## Value Transformation
+Cada operador desse módulo leva a saída de uma fonte observable e modifica ou substitui o valor antes de passá-los aos subscribers.
+
+### ConcatMap
+Pega cada valor de entrada e passa para a função fornecida ao operador como um parâmetro. O resultado da função é então passado para os assinantes e o próximo valor da origem observable é processado. 
+
+### ConcatMapTo
+A fonte observable atua como um sinalizador em vez de fornecer valores reais usados. Cada vez que a fonte observable emite, os valores dos obseravbles internos são emitidos. Então aqui vemos a fonte observable emitindo e o subscriber recebe os valores do observable interno.
+
+### DefaultIfEmpty*
+permite que especifiquemos um valor a ser emitido a partir de uma fonte, se ela for concluída sem emitir nenhum valor. 
+
+### EndWith
+Permite que especifiquemos valores que serão anexados ao final de quaisquer valores que sejam emitidos da origem. Como **defaultIfEmpty**, esse operador também permitiria que todos os seus subscribers recebessem algo. Mas esse também fornecerá os valores se a fonte fornecer alguma coisa.
+
+### StartWith
+Permite que especifiquemos valores que serão emitidos antes que quaisquer valores sejam emitidos da fonte. 
+
+### ExhaustMap
+Leva cada valor emitido da fonte e mapeia-o para uma factory function que deve retornar um valor observable. Em seguida, ele assina esse observable e emite todos os valoes dele para os subscribers. Se um desses observables criados ainda estiver emitindo quando os valores de um observable gerado subsequente começarem a ser emitidos, todos os valores desse observable subsequente serão descartados e nunca serão enviados para os subscribers.
+
+### Expand
+Emite cada valor da origem para os subscribers e, em seguida, passa cada valor para a factory function especificada como um parâmetro para o operador. Essa factory function deve retornar um observable. Expandir, em seguida, assina o observable e passa cada valor do observable gerado através da mesma factory function. Ele continua de forma recursiva até que cada um dos observables gerados seja concluído ou com erro. **O uso mais comum desse operador é implementar paginação de valores de uma fonte de dados, que não informa o número total de páginas de dados que está sendo fornecido.** 
+
+### Map
+Ele permite que obtenhamos todos os valores provenientes de uma fonte observable e execute-os por meio de uma função que fornecemos. E então o valor retornado dessa função é o que é enviado para os subscribers. Essa função pode ser tão simples ou tão complexa quanto precisarmos, embora se a fonte observable emitir muitos valores, o ideal é manter a função bem simples ou usar outros operadores na frente dele. Para fazer qualquer filtragem, podemos reduzir o número de vezes que a função é chamada.
+
+### MapTo
+Pega todos os valores emitidos da origem e os converte no mesmo valor constante que especificamos.
+
+### Scan
+Pega cada valor da fonte observable e passa-o para uma função que passamos como parâmetro. Essa função recebe dois valores cada vez que é chamada. O valor retornado da função na útlima vez em que foi chamado ou um valor inicial opcional para a primeira chamada e, em seguida, o valor atual emitido da origem. Cada valor retornado da função é passado para os subscribers. A ideia do scan é que cada chamada sucessiva para função constrói um valor, que é o resultado cumulativo de todas as chamadas para a função.
+
+### MergeScan
+É como o **scan**, exceto que a função passada como parâmetro retorna um valor observable em vez de apenas um único valor. Os valores emitidos a partir daquele observable gerado são enviados para os subscribers e, em seguida, o valor final é passado de volta para função como o valor acumulado para gerar um novo observable. 
+
+### Pluck
+Permite pegar objetos emitidos de uma fonte observable e extrair o valor de uma propriedade específicada. Então esse valor é enviado para os subscribers. 
+
+### Reduce
+É semelhante ao **scan**, exceto pelo fato de apenas emitir o valor acumulado final. Reduce pega cada valor de uma fonte observable e passa-o sequencialmente para uma função que fornecemos. Essa função também recebe o resultado cumulativo de todas as chamadads anteriores para a função. Em seguida, ele retorna um valor, que é usado como o resultado cumulativo para a próxima chamada para a função. O reduce não emite até que a fonte observable seja concluída, no ponto em que envia o valor acumulado final para os subscribers.
+
+### SwitchMap / FlatMap
+SwitchMap é um operador comum. Ele também é chamado de flatMap, pois flatMap é um alias de switchMap. É usado para assinar um novo observable toda vez que a nossa fonte emite. O novo observable que nós assinamos é gerado pela factory function que passamos para o switchMap/flatMap. O importante é que quando a fonte emite, nos inscrevemos no novo observable e cancelamos a assinatura do observable anterior.
+
+### MergeMapTo
+Pega cada valor emitido da origem e mapeia para o mesmo observable fornecido. Os valores desse observable são repassados para os subscribers. 
+
+### SwitchMapTo
+É semelhante ao **mergeMapTo** em que ele pega cada valor emitido da origem e o mapeia para o mesmo observable fornecido. A diferença é que, se um novo valor vem da fonte, enquanto o observable interno ainda está emitindo valores, o observable interno é anulado e depois o novo valor da origem é assinado novamente.
+
+### Materialize
+Pega tudo o que é emitido a partir de uma fonte observable, valores, erro e complete, e converte-o para um objeto de notificação. O objeto de notificação parece com: 
+{ kind: 'N', value: < value >, error: undefined, hasValue: true } - quando tem valores
+{ kind: 'C', value: undefined, error: undefined, hasValue: false } - para complete 
+{ kind: 'E', value: undefined, error: < error contents >, hasValue: false } - para errors
+Um exemplo de uso para eses operador, é quando não controlamos o código-fonte para um determinado observable ou, por algum outro motivo, não podemos ou não alteramos o observable. Precisamos controlar as emissões da fonte, talvez alterando o erro ou o tratamento complete, portanto, é necessário detectar error e completes antes que eles encapsulem a cadeia e lidem com eles de maneira diferente. 
+
+### Dematerialize
+É o oposto de **materialize**. Ele recebe um objeto de noitificação que se parece com: 
+{ kind: 'N', value: < value >, error: undefined, hasValue: true } - quando tem valores
+{ kind: 'C', value: undefined, error: undefined, hasValue: false } - para complete 
+{ kind: 'E', value: undefined, error: < error contents >, hasValue: false } - para errors
+e converte em uma emissão padrão para valores, complete e error.
+
 
 
