@@ -172,4 +172,32 @@ Um exemplo de uso para eses operador, é quando não controlamos o código-fonte
 e converte em uma emissão padrão para valores, complete e error.
 
 
+## Multicasting
+### Use Case
+É simplesmente pegar valores de um fonte e compartilhá-los ou passá-los para vários subscribers, normalmente colocando algum tipo de controle ou limite na forma como os subscribers recebem os valores ou os valores que recebem. 
+
+### Multicast
+Cria um observable conectável. Ou seja, podemos pensar em um observable conectável como um proxy da fonte observable original. Ele recebe os valores da fonte original e os reecontra inalterados para os subscribers. E por que? A resposta é baseada em duas outras coisas sobre observables conectaveis.
+1. Como todos os subscribers se conectam ao proxy em vez da fonte real, podemos limitar o número de vezes que algum efeito colateral ocorreu na origem. Isso significa que, no que diz respeito à fonte observable, ela tem apenas uma assinante, o proxy criado pelo multicast. Isso significa que quaisquer efeitos colaterais dentro do observable serão processados um vez para o proxy, em vez de uma vez por subscriber real. Dependendo da natureza dos efeitos colaterais, isso pdoe ser um grande problema. 
+2. Outro ponto importante é a parte conectável. Normalmente, assim que um subscriber se conecta a um observable, o observable começa a alimentá-lo, desde o início de uma sequência, se for um ponto de **cold observable**, ou desde o ponto de assinatura para um **hot observable**. Em ambos os casos, o gatilho é a assinatura. 
+Mas e se tivermos um monte de observadores para se inscrever e quisermos que todos eles comecem do mesmo ponto? O que é especialmente problemático para **hot observables**. É aqui que entra a peça conectável. Com um observable conectável, podemos assinar todos os observadores que quisermos e levar o tempo que for necessário, nada acontecerá até que chamemos o método de conexão no observable conectável. Nesse ponto, todos os observadores assinados começarão a receber valores, todos no mesmo ponto. 
+
+### Share
+Mantém a fonte observable original aberta, desde que haja pelo menos um subscriber. Assim que o útlimo subscriber cancelar a assinatura, **share** desinscreve da origem. Isso torna a fonte um hot observable. Isso significa que cada novo subscriber receberá apenas os valores emitidos após a assinatura. Ou seja, não começa do início do fluxo. No entanto, depois que todos os subscribers tiverem cancelado a assinatura, a inscrição da fonte é cancelada. Então, se novos subscribers vierem depois, uma nova assinatura será iniciada, potencialmente no início de uma sequência, dependendo da natureza da fonte.
+
+### ShareReplay
+É exatamente igual ao **share** com uma distinção importante. Ele permite fornecer valores que foram emitidos antes de um novo subscriber se inscrever. Podemos especificar o número de valores que serão repetidos para os novos subscribers ou uma janela de tempo dizendo que qualquer coisa emitida em milissegundos antes que um observer subscribed seja enviado para ele de qualquer maneira. O padrão é reproduzir tudo o que a fonte emitiu, essencialmente fazendo com que seja uma cold observable novamente. Então, se não quisermos isso, vamos especificar um número ou uma janela de tempo para emitir.
+
+### Publish
+Pega uma fonte observable regular e converte para um observable conectável. Pode revisar observable conectável no operador **multicast**. 
+
+### PublishBehavior
+Como **publish**, **publishBehavior** pega uma fonte observable regular e converte em um observable conectável. A diferença entre eles é que publishBehavior permite que especifiquemos um valor inicial que os subscribers receberão imediatamente após a inscrição, ou seja, antes que o connect seja chamado.
+
+### PublishLast
+Como **publish**, pega uma fonte observable e converte em um observable conectável. Há uma diferença: fornece apenas o último valor emitido da origem para os subscribers deposi que a origem é fechada. Mesmo se os subscribers aparecerem um tempo depois, eles ainda receberão o último valor e depois serão concluídos.
+
+### PublishReplay
+É um pouco parecido com **publish** e **publishLast**. Como **publish** ele cria um observable conectável que faz proxy da origem e fornece valores para os subscribers quando a connect é chamado. E como **publishLast** também fornece valores para os subscribers que se inscrevem mais tarde, após connect ter sido chamado. A diferença é que **publishReplay** nós podemos especificar o números de valores que desejamos fornecer aos subscribers que se inscrevem após a conclusão da fonte ou especificar uma janela de tempo de valores para fornecer.
+
 
