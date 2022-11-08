@@ -201,3 +201,25 @@ Como **publish**, pega uma fonte observable e converte em um observable conectá
 É um pouco parecido com **publish** e **publishLast**. Como **publish** ele cria um observable conectável que faz proxy da origem e fornece valores para os subscribers quando a connect é chamado. E como **publishLast** também fornece valores para os subscribers que se inscrevem mais tarde, após connect ter sido chamado. A diferença é que **publishReplay** nós podemos especificar o números de valores que desejamos fornecer aos subscribers que se inscrevem após a conclusão da fonte ou especificar uma janela de tempo de valores para fornecer.
 
 
+## Utilities
+### Count
+Simplesmente espra que uma fonte observable seja concluída e, em seguida, apenas emite o número total de v alores que vieram da origem. Nenhum dos valores realmente emitidos da fonte é repassado para os subscribers.
+
+### Every
+Pega todos os dados da fonte observable e os transmite como um parâmetro para a predicate function que fornecemos. Assim que o valor não satisfizer o predicado, **every** cancela a assinatura da fonte e passará false para os subscribers. Se a origem for concluída e cada valor emitido satisfizer o predicado, **every** passará true para os subscribers. 
+
+### IsEmpty
+Se a fonte observable for concluída sem emitir nenhum valor, **isEmpty** enviará o único valor true para os subscribers. Se, no entanto, a fonte emitir valores, assim que o primeiro valor for emitido, **isEmpty** passará false e complete. 
+
+### SequenceEqual
+Pega os valores do observable interno que especificamos como um parâmetro e compara-os com os valores emitidos da fonte observable. Se cada par de valores for igual, **sequenceEqual** passará true para os subscribers quando a origem for concluída. Se algum valor for diferente nos pares ou uma sequência tiver mais valores que o outro, **sequenceEqual** passará false aos subscribers assim que determinar definitivamente que as sequências não são iguais.
+
+### Tap
+Ele recebe todos os valores emitidos da fonte, permite que executemos uma ação e passamos o mesmo valor para os outros operadores ou subscribers. A ação que tomamos normalmente é algum tipo de efeito colateral, algo fora do fluxo de dados típico. Registrar (logging) o valor de alguma forma é bastante comum, mas pode ser qualquer coisa para a qual possamos escrever código. 
+
+## Wrap Up
+### Resources
+(RxJS - Reactive Extensions Library for JavaScript)[https://rxjs-dev.firebaseapp.com/]
+(Rx Visualizer - Criador de Marble Diagram Baseado em Código)[https://rxviz.com/]
+(YouTube - Introducing RxJS6! - Ben Lesh)[https://www.youtube.com/watch?v=JCXZhe6KsxQ]
+(GitHub - Código-fonte do RxJS)[https://github.com/ReactiveX/rxjs]
