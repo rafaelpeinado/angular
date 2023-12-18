@@ -73,15 +73,45 @@ Existem outras ferramentas de testes unitários que estão disponíveis para tes
 * **E2E tools:** há toneladas de ferramentas de teste E2E.
 
 ### Writing Your First Unit Test
+* git clone https://github.com/joeeames/PSAngularUnitTestingCourse.git **ngUnitTestingDemo**: isso renomeia o nome da pasta do clone.
+Ao criar o arquivo **first-test.spec.ts**, definir o nome **spec** é o que permite que a nossa ferramenta de teste unitário Karma saiba que este é um arquivo de teste. **Spec** é uma abreviação de **Specification**, é uma palavra comum usada ao escrever testes unitários, então precisamos ter certeza de que todos os nossos testes unitários terminam com **.spec.ts**.
 
+* **Começamos com a describe function:** esta é uma função Jasmine que nos permite agrupar os testes.
+  * **possui dois parâmetros:**
+    * descrição que é uma string
+    * e o segundo que é uma função callback que conterá nossos testes
+* **beforeEach function:** configuração comum que será executada antes de cada teste. Isso irá redefinir o estado para que a cada teste não tenha nenhum efeito de um teste anterior que esteja atrasando e talvez poluindo o estado de testes futuros.
+* **it function:** onde são escritos os testes
+  * Existe uma estrutura de teste chamada AAA (Arrange, Act, Assert)
+    * **Arrange:** é onde vamos organizar e criar
+    * **Act:** precisamos tomar algum tipo de ação. Precisamos agir em nosso sistema em teste.
+    * **Assert:** nossa afirmação, onde vamos usar expect que é uma função Jasmine.
+      * Jasmine tem vários matchers como toBe, toBeLessThan, toBeGreaterThan etc.
 
-
-### Running Your Unit Tests
-
+Cada linha de teste mostrará um texto com o nome do describe mais o nome do it, por exemplo, my first test should be true if true.
 
 
 ### Writing Good Unit Tests
+#### Structuring Tests
+* Estruturação de testes seguem o padrão AAA
+  * **Arrange:** organizamos todas as pré-condições e entradas necessárias
+  * **Act:** agimos no objeto ou classe sob teste
+  * **Assert:** afirmamos que os resultados esperados ocorreram
 
+#### DAMP vs DRY
+* **DRY (Don't Repeat Yourself):** não se repita, é um conceito comum usado em programação. Quantos estamos seguindo o princípio DRY, removemos a duplicação do nosso código, não queremos nenhuma duplicação de código em nosso aplicativo.
 
+Bom testes, porém, operam sob o princípio diferente chamado princípio DAMP.
+* **DAMP (Descriptive and Meaningful Phrases):**
+  * Ainda queremos seguir o princípio DRY, mas nós repetiremos se necessário.
+
+#### Tell the Story
+Um bom teste contar uma história. A história é que começamos em um determinado lugar, fazemos uma mudança e verificamos que chegamos onde chegamos.
+* Um teste deve ser uma história completa dentro da função it()
+* Não devemos precisar muito para entender o teste ou para entender a história.
+* Técnicas eficientes:
+  * Devemos mover uma configuração menos interessante dentro do beforeEach(): se houver alguma configuração inicial ou estado inicial que preciser estar presente, mas não for crítico para o teste que estamos criando, podemos mover essa configuração para a função beforeEach.
+  * A configuração crítica deve estar dentro da função it(): portanto, se tivermos dois testes diferentes que usam a mesma configuração, mas esa configuração é importante para a história do que é o teste, então duplicaremos essa configuração dentro do bloco, em vez de extraí-los no beforeEach, o que removeria a duplicação.
+  * Queremos ter certeza de que incluímos o arrange, act e assert dentro do it()
 
 
