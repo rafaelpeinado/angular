@@ -108,27 +108,124 @@ VS Code:
   * do componente para o template
 * Property binding ([propriedade]="valor"): também é saída do componente para o template
 * Event binding ((evento)="handler"): Do contrário, também conseguimos escutar eventos do template com click no botão, com foco em algum input para assim executar algum método no componente para executar a lógica de programação necessária.
-* Two-way data binding ([(ngModel)]="propriedade"): conseguimos manter tanto o template quanto o componente atualizados ao mesmo tempo
+* Two-way data binding ([(ngModel)]="propriedade"): conseguimos manter tanto o template quanto o componente atualizados ao mesmo tempo, útil para formulários
+
+
+[Para pegar imagens gratuitas](http://lorempixel.com.br/)
+
+* A interpolação também é uma forma de property binding, porém as tags p ou div, por exemplo, não temos nenhuma propriedade para indicar um conteúdo, então usamos interpolação.
+* Há momentos que poderemos usar apenas property binding
+* Quando usamos os colchetes [src] o que o Angular faz é usar o bind-src
+* Quando não existe uma propriedade no elemento, usa-se [attr.colspan]
 
 ### Class e Style binding
+[How to Add Bootstrap to an Angular CLI project](https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/)
 
+* Class e Style binding também são property bindings
+* Criar variável local de template usando #classe, por exemplo
+* [class.alert-success]="classe.value == 'alert-success'", ou seja, adiciona alert-success no class, caso a variável de template classe.value for igual a alert-success
+* [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'"
+  * style.[propriedade que quer mudar] = lógica e valores da propriedades
 
 ### Event binding
+* [Documentação de Eventos](https://developer.mozilla.org/en-US/docs/Web/Events)
+* [Bootstrap widgets Angular CLI](https://ng-bootstrap.github.io/#/getting-started)
+* Para properties usamos [], para events usamos ()
+* keyup: lança um evento toda vez que um botão do teclado é usado
+  * para mandar o texto que está sendo recebido pelo evento, podemos usar a variável $event
+* blur: quando o campo perde focos
 
 
 ### Two-way data binding
-
+* Atualizar valor do template para o Componente e vice-versa
+* Usa-se binding de eventos + propriedades
+* (input): emite um evento sempre que o campo é atualizado 
+* ngModel: representa uma entidade, por exemplo, nome ou qualquer outro objeto (ou atributo simples)
+* Sintaxe "banana na caixa" ou banana in a box [()] = ngModel
+  * ngModel é uma diretiva que pertence ao module **FormsModule**
 
 ### Input properties
-
+O input property tem um objetivo das diretivas, em projetos reais usaríamos a input property para criar componentes e organizar melhor o projeto
 
 ### Output properties
+Componente customizado.
+Objetivo: disparar um evento "mudou" toda vez que o usuário clicar nos botões + ou -.
+Evento recebe novo valor do input
+
+Quando for um harded code, não precisamos usar [valor]=10, podemos usar valor=10
 
 
 ### Ciclo de vida (life-cycle) do Componente
+| # | Evento (Hooks)        | Quando?                                                |
+|:--|:---------------------:|-------------------------------------------------------:|
+| 1 | ngOnChanges           | Antes #2 e quando valor property-binding é atualizado  |
+| 2 | ngOnInit              | Quando Component é inicializado                        |
+| 3 | ngDoCheck             | A cada ciclo de verificação de mudanças                |
+| 4 | ngAfterContentInit    | Depois de inserir conteúdo externo na view             |
+| 5 | ngAfterContentChecked | A cada verificação de conteúdo inserido                |
+| 6 | ngAfterViewChecked    | A cada verificação de conteúdo/conteúdo filho          |
+| 7 | ngOnDestroy           | Antes da diretiva/component ser destruído              |
+
+* **ngOnChanges:** para input properties, quando este muda
+
+Se muda o input property, somente o ngOnChanges é disparado na mudança. Sendo assim, se tiver input properties é melhor usar ngOnChanges, senão, é melhor usar ngOnInit
+
+## Angular CLI
+### Angular CLI: Instalação e criação de projetos: ng new e ng serve
+* Requer node
+* npm install -g @angular/cli
+* node -v
+* [Git Angular CLI](https://github.com/angular/angular-cli)
+* ng new diretivas
+* cd diretivas
+* ng serve (similar ao npm start)
+  * ng serve --port 4201 --live-reload-port 49153
+
+Outra opção de criar um projeto é:
+* mkdir diretivas
+* cd diretivas
+* ng init
+* ng serve
 
 
-### Acesso ao DOM e ao Template com ViewChild
+### Angular CLI: Criando componentes, services: ng generate
+* ng generate component diretiva-ngif
+  * ng g c diretiva-ngif
+* ng generate service diretiva-ngif (geralmente criamos um serviço para o componente com o mesmo nome)
+  * ng g s diretiva-ngif 
+
+Arquivos são gerados usando o padrão de nomenclatura e boas práticas segundo o **Style Guide**
+
+| Tipo Arquivo | Comando                        |
+|:-------------|-------------------------------:|
+| Component    | ng g component meu-component   |
+| Service      | ng g service meu-servico       |
+| Directive    | ng g directive minha-diretiva  |
+| Pipe         | ng g pipe meu-pipe             |
+| Class        | ng g class minha-classe        |
+| Interface    | ng g interface minha-interface |
+| Enum         | ng g enum meu-enum             |
+
+
+### Angular CLI: Usando pré-processadores (Sass, Less, Stylus)
+
+
+
+### Angular CLI: ng lint, ng test, ng e2e
+
+
+
+### Angular CLI: Estrutura do projeto
+
+
+
+### Angular CLI: Gerando build de produção
+
+
+
+### Angular CLI: instalando bibliotecas (bootstrap, jquery, materialize, lodash)
+
+
 
 
 
