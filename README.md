@@ -208,24 +208,144 @@ Arquivos são gerados usando o padrão de nomenclatura e boas práticas segundo 
 
 
 ### Angular CLI: Usando pré-processadores (Sass, Less, Stylus)
+Ao gerar um novo projeto
+* ng new meu-projeto --style=sass
+* ng new meu-projeto --style=less
+* ng new meu-projeto --style=stylus
 
+Em um projeto existente
+* ng set defaults.styleExt scss
+* ng set defaults.styleExt less
+* ng set defaults.styleExt styl
+  * Porém, os arquivos existentes não são migrados
 
 
 ### Angular CLI: ng lint, ng test, ng e2e
-
-
+* ng lint (escaneia o código e procura erros, como ; faltando etc)
+  * ng add @angular-eslint/schematics
+  * [Style Guide](https://angular.io/guide/styleguide)
+* ng test
+  * usa TypeScript
+  * Usa Jasmine (BDD): testes orientados a comportamento
+  * test.ts carrega todos os providers e busca todos os arquivos spec.ts
+  * Karma: é uma ferramenta de testes que permite executar cada linha de código teste em diferentes browser (assim podemos emular e verificar a compatibilidade cross-browser da app)
+* ng e2e
+  * Protractor para ferramentas de integração
 
 ### Angular CLI: Estrutura do projeto
+#### Para que serve o Angular CLI?
+* Cria toda a estrutura do projeto
+* Gera página HTML inicial, arquivos Typescript iniciais, arquivos CSS e arquivos de testes unitários
+* Cria arquivo package.json com todas as dependências do Angular
+* Instala todas as dependências do node (npm install)
+* Configura o Karma para executar os testes unitários com Jasmine
+* Configura Protractor para executar os testes end-to-end (E2E)
+* Inicializa um repositório git no projeto e faz commit inicial
+* Cria todos os arquivos necessários para fazer o build da aplicação para produção
 
+O Angular CLI utiliza o [Ember CLI](https://emberjs.com/) por baixo, e essa ferramenta faz a criação de diretórios, prepara tudo para build etc
+
+
+#### Estrutura Diretórios do Projeto
+* **config:** diretório que contém configuração para deploy/build e teste
+* **dist:** diretório onde é gerado o build da aplicação. Ignorado pelo git
+* **e2e:** diretório que contém os scripts para testes end-to-end
+* **node_modules:** diretório que contém os pacotes npm da app (package.json). Também ignorado pelo git
+* **public:** diretório genérico que contém um arquivo .npmignore
+* **src:** diretório do código fonte da aplicação. Contém código typescript/javascript, CSS, imagens e templates HTML
+* **angular-cli.json:** arquivo que contém informações sobre o projeto e build de produção, como nome do projeto, config de onde encontrar os arquivos fontes da app, config de testes, etc.
+* **tslint.json:** arquivo que contém configurações para fazer lint da app
+
+
+#### Estrutura do Código Fonte (src)
+* **index.html:** página HTML principal da aplicação, que faz o startup.
+* **main.ts:** é o código que carrega a aplicação. Somente deve ser editado caso seja necessário adicionar mais módulos na app (que não dê para fazer via angular-cli.json).
+* **polyfills.ts:** contém os imports de libs para compatibilidade com ES6 (biblioteca de suporte)
+* **tsconfig.json:** contém as configurações do compilador do typescript (por exemplo, pega o "module": "es2020" e compila para "target": "es2017")
+* **typings.d.ts:** é usado para declarações de tipos que a app usa + módulo
+* **index.ts:** contém o export de todos os arquivos do módulo
+
+
+#### Estrutura package.json
+Dependencies x devDependencies
+* **dependencies:** dependências necessárias para executar a aplicação
+* **devDependencies:** dependências necessárias para desenvolver a aplicação (não necessárias após o build de produção)
+
+
+##### Dependencies
+* **@angular/core:** pacote principal do framework Angular. Contém decorators e metadados, Component, Directive, injeção de dependência e os hooks de ciclo de vida do Component.
+* **@angular/common:** Serviços, pipes e diretivas comuns fornecidas pelo time de dev do Angular.
+* **@angular/compiler:** Template de compilação do Angular. Entende o código dos templates e converte em código que faz a app ser executada e renderizada. Desenvolvedores não interagem com esse pacote diretamente (apenas usamos seu código).
+* **@angular/forms:** contém todo o código para construção de formulários no Angular.
+* **@angular/platform-browser:** contém todo o código relacionado ao DOM e ao browser, especialmente as partes que ajudam a renderizar o DOM. Esse pacote também contém o método para fazer o bootstrap da aplicação para builds de produção que pré-compila os templates. (faz tratamento de diretivas, por exemplo)
+* **@angular/platform-browser-dynamic:** contém os Providers e o método para iniciar as aplicações que compilam templates no lado cliente. Não usa compilação offline. Usada para fazer bootstrap durante desenvolvimento e exemplos plunker.
+* **@angular/http:** fornece o cliente HTTP
+* **@angular/router:** classes de roteamento.
+
+
+##### Dependencies polyfills
+* **core-js:** biblioteca que permite compatibilidade de engines JS antigas com a especificação do ES 2015, ou seja, emula as funcionalidades do ES 2015 (ES6) E ES 7 em browsers que suportam somente ES5.
+* **reflect-metadata:** dependência compartilhada entre o Angular e o compilador TypeScript. Permite o uso de decorators no código (annotations). Isso permite aos desenvolvedores para fazer upgrade no TypeScript sem precisar de fazer upgrade no Angular. Esse é o motivo desta ser uma dependência da aplicação e não do Angular
+* **rxjs:** extensão para a especificação do Observables (programação assíncrona). Reactive extensions for JavaScript
+* **ts-helpers:** biblioteca auxiliar que permite otimização do código typescript quando o mesmo é compilado para ES 5.
+* **zone-js:** extensão (plugins) útil para tarefas assíncronas (chamadas de Zones).
+
+
+##### devDependencies 
+* **@types/jasmine:** definição jasmine para typescript (antigo typings)
+* **@types/protractor:** definição protractor para typescript (antigo typings)
+* **angular-cli:** ferramenta de linha de comando para gerenciar projetos Angular
+* **codelyzer:** lint (análise de código) para Angular
+* **jasmine-core:** arquivos principais jasmine para node.js
+* **jasmine-spec-reporter:** relatório em tempo real para BDD com Jasmine
+* **karma:** ferramenta de testes que cria um web server e executa código de teste para cada um dos browsers conectados
+* **karma-chrome-launcher:** launcher do karma para o chrome
+* **karma-jasmine:** adaptador para o jasmine
+* **karma-remap-istanbul:** adaptador para code coverage (relatório)
+* **protractor:** framework de teste end to end (integração) para Angular
+* **ts-node:** módulo typescript para node.js
+* **tslint:** lint (análise de código) para typescript
+* **typescript:** compilador typescript
 
 
 ### Angular CLI: Gerando build de produção
+#### Gerando o build para desenvolvimento (as 4 fazem a mesma coisa): 
+* ng build --target=development --environment=dev
+* ng build --dev --e=dev
+* ng build --dev
+* ng build
 
+
+#### Build de dev
+* útil para integrar o código Angular com o projeto de backend (PHP, Java, .NET, Python, Ruby etc)
+* Código que dá para debugar
+* Arquivo main.bundle.js contém todo o código do projeto + CSS + HTML (legível)
+
+
+#### Gerando o build de produção (as 3 fazem a mesma coisa): 
+* ng build --target=production --environment=prod
+* ng build --prod --env=prod
+* ng build --prod
+
+
+#### Build de prod
+* Ofusca e minifica o código JS da aplicação
+* CSS e templates HTML já minificados e incluídos em main.bundle.js
+Além disso, os arquivos contém um número no nome, isso ajuda na hora de cache. Quando o arquivo muda, é necessário fazer um novo download, o que garante que a aplicação esteja sempre atualizada. Por exemplo, main.52f367401ec1fd37b6ba.js, enquanto dev ficaria main.js
+
+* **npm install http-server -g:** para servir no browser para carregar arquivos do dist
 
 
 ### Angular CLI: instalando bibliotecas (bootstrap, jquery, materialize, lodash)
-
-
-
+* [angular-cli-libs-externas](./projetos/angular-cli-libs-externas/)
+* npm i --save bootstrap
+  * jquery é dependência do bootstrap
+  * tether é o que faz o meio de campo entre jquery e o bootstrap
+* [Materialize](https://materializecss.com/)
+  * precisa de jquery instalado para alguns casos de javascript
+  * para [Angular](https://www.npmjs.com/package/materialize-angular)
+* [Lodash](https://lodash.com/)
+  * npm i --save lodash
+  * **npm i --save @types/lodash:** precisa instalar para fazer a ponte entre o lodash e o typescript
 
 
