@@ -392,6 +392,9 @@ Quando usamos o *, a tradução do Angular é usar a tag ng-template
 Uma maneira de fazer navegação segura entre objetos
 
 ### ng-content
+* Nem sempre poderemos usar o @Input para enviar algum dado, as vezes precisamos enviar um conteúdo
+* <ng-content> é o componente pai quem vai enviar
+* Se quisermos enviar um conteúdo específico, informamos a partir de um selector
 
 
 ### Criando uma diretiva de atributo: ElementRef e Renderer
