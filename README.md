@@ -348,4 +348,63 @@ Além disso, os arquivos contém um número no nome, isso ajuda na hora de cache
   * npm i --save lodash
   * **npm i --save @types/lodash:** precisa instalar para fazer a ponte entre o lodash e o typescript
 
+## Diretivas
+### Introdução e tipos de diretivas no Angular
+* Diretivas são instruções
+Por exemplo, looping for que diz: itere todos os cursos, e a cada iteração, atribua o valor do elemento atual à uma variável curso. Replique também o elemento <li> com o valor da variável curso a cada iteração.
+
+* Componentes também são diretivas com template
+
+Tipos de diretivas:
+* Diretivas Estruturais: interagem com a view e modificam a estrutura do DOM e/ou código HTML - *ngFor, *ngIf
+* Diretivas de atributos: interagem com o elemento em que foram aplicados - ng-class, ng-style
+
+
+### Diretivas: ngIf
+* Tem o mesmo comportamento que a condicional if nas linguagens de programação
+Como o ngIf destrói a parte do código que é falsa, isso pode impactar a performance. Dependendo do caso, o ideal é usar hidden
+
+#### *ngIf x hidden
+* Hidden: recomendado para árvore de elementos pequenas
+  * é menos custoso usar [hidden] caso o custo de criar a árvore de elementos seja grande
+* *ngIf: recomendado para árvore de elementos grandes
+  * quando envolve segurança, a opção a ser usada é o *ngIf
+
+
+### Diretivas: ngSwitch, ngSwitchCase e ngSwitchDefault
+* **(click)="aba = 'lista'"**: a variável recebe valor ao dar um click
+* **[ngSwitch]:** usa property binding, porque vamos precisar ficar escutando o valor da expressão
+
+### Diretivas: ngFor
+Parecido com laço for
+
+### Diretivas: sobre o * e template
+Quando usamos o *, a tradução do Angular é usar a tag ng-template
+
+### Diretivas: ngClass
+[diretiva-ngClass](./projetos/diretivas/src/app/diretiva-ngstyle/)
+
+### Diretivas: ngStyle
+[diretiva-ngStyle](./projetos/diretivas/src/app/diretiva-ngstyle/)
+
+### Operador Elvis
+[Operador Elvis](./projetos/diretivas/src/app/operador-elvis/)
+Uma maneira de fazer navegação segura entre objetos
+
+### ng-content
+
+
+### Criando uma diretiva de atributo: ElementRef e Renderer
+
+
+### Diretivas: HostListener e HostBinding
+
+
+### Diretivas: Input e Property Binding
+
+
+### Criando uma diretiva de estrutura (ngElse)
+
+
+
 

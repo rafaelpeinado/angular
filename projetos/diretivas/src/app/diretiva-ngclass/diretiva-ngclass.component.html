@@ -1,0 +1,12 @@
+<h5>Diretiva ngClass</h5>
+<h1>
+  <i class="bi" [class.bi-star]="!meuFavorito" [class.bi-star-fill]="meuFavorito" (click)="onClick()"></i>
+</h1>
+
+<!-- Diretiva ngClass -->
+<h1>
+  <i class="bi" (click)="onClick()" [ngClass]="{
+    'bi-star': !meuFavorito,
+    'bi-star-fill': meuFavorito
+  }"></i>
+</h1>
