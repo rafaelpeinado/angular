@@ -414,10 +414,13 @@ Uma maneira de fazer navegação segura entre objetos
 * **HostBinding:** permite que façamos a ligação/associação de determinado atributo da diretiva a um determinado atributo do elemento HTML
 
 ### Diretivas: Input e Property Binding
-
+[Diretiva Highlight](./projetos/diretivas/src/app/shared/highlight.directive.ts)
 
 ### Criando uma diretiva de estrutura (ngElse)
-
-
+* A tag <ng-template> é um conceito de web components
+* **TemplateRef:** que faz referência ao template
+* **ViewContainerRef:** faz referência ao container da view
+* Nós podemos usar o *, pois Angular consegue fazer a abstração do web component
+* [Documentação ngIf do Angular](https://github.com/angular/angular/blob/d315e2c4fa178dfbd41bc25259605bb999fa302e/packages/common/src/directives/ng_if.ts#L155)
 
 
