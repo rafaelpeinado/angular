@@ -467,3 +467,5 @@ Quando colocamos a classe no providers do Módulo, ela vai ser instanciada apena
 * Quando definimos um atributo ou método como static, dizemos que não precisamos da instância da Classe para poder acessá-lo
 
 ### Injetando um serviço em outro serviço
+
+
