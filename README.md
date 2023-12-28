@@ -459,8 +459,11 @@ Quando colocamos a classe no providers do Módulo, ela vai ser instanciada apena
 
 * **[CommonModule e BrowserModule](./projetos/servicos/src/app/criar-curso/criar-curso.module.ts)**
 
-
 ### Comunicação entre componentes usando serviços (broadcast de eventos)
+* Quando não temos componentes pai e filho, no caso componentes completamente independentes, usamos serviço para fazer a comunicação entre componentes.
 
+* No exemplo, o receber-curso-criado é filho do criar-curso, sendo assim, ele herda também o provider do criar-curso, usando apenas uma instância
+
+* Quando definimos um atributo ou método como static, dizemos que não precisamos da instância da Classe para poder acessá-lo
 
 ### Injetando um serviço em outro serviço
