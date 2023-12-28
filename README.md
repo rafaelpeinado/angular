@@ -448,10 +448,16 @@ O que é dependência?
   * Métodos setters
   * Atributos
 
-
-
-
 ### Escopo de instâncias de serviços e módulos (singleton e várias instâncias)
+Qual a diferença entre ter várias instâncias ou apenas uma instância da classe?
+
+Quando colocamos a classe no providers do Módulo, ela vai ser instanciada apenas uma vez, mesmo inserindo em vários providers (isso é o padrão Singleton, pois terei apenas uma instância da classe, independente de onde eu inserir esse serviço)
+
+* Se eu quiser um escopo global, eu insiro no providers do AppModule, se eu quiser mais restrito, eu insiro apenas no providers do Module desejado
+  * Além disso, quando inserimos o providers dentro daquele módulo, todos os declarations tem acesso àquele serviço. Sendo assim, se quisermos que o serviço seja usado apenas por um determinado componente, podemos usar providers do Decorator Component e importar a classe, conforme [exemplo](./projetos/servicos/src/app/criar-curso/criar-curso.component.ts), porém, isso cria mais instâncias do serviço
+    * **Quando é apenas uma instância todos os componentes são atualizados caso o serviço seja alterado. Quando temos mais de uma instância, apenas aquela instância vai ser atualizada, caso o serviço seja alterado.**
+
+* **[CommonModule e BrowserModule](./projetos/servicos/src/app/criar-curso/criar-curso.module.ts)**
 
 
 ### Comunicação entre componentes usando serviços (broadcast de eventos)
