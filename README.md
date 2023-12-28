@@ -424,3 +424,28 @@ Uma maneira de fazer navegação segura entre objetos
 * [Documentação ngIf do Angular](https://github.com/angular/angular/blob/d315e2c4fa178dfbd41bc25259605bb999fa302e/packages/common/src/directives/ng_if.ts#L155)
 
 
+
+
+## Serviços
+### Introdução a Serviços
+* **Buscar/enviar dados para o servidor:** Componente -> Serviço -> Backend
+* **DRY: Don't Repeat Yourself:** também é usado para não repetir códigos e criar classes de serviços
+  * Fornece lógica de negócio e evita código duplicado
+* O ideal é que toda lógica de negócio fique na classe de serviço, para que os componentes apenas peguem os dados e exibam na tela
+* **Classes utilitárias**
+* [API Pokemon](https://pokeapi.co/)
+
+### Criando um serviço (Service)
+* ng g c cursos
+* ng g s cursos/cursos
+
+### Injeção de Dependência (DI) + como usar um serviço em um componente
+
+
+### Escopo de instâncias de serviços e módulos (singleton e várias instâncias)
+
+
+### Comunicação entre componentes usando serviços (broadcast de eventos)
+
+
+### Injetando um serviço em outro serviço
