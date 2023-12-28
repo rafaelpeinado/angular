@@ -398,10 +398,20 @@ Uma maneira de fazer navegação segura entre objetos
 
 
 ### Criando uma diretiva de atributo: ElementRef e Renderer
+* A diretiva é como se fosse um component sem template.
+* ng g d shared/fundo-amarelo
+* Decorator de Directive
+* ng g c diretivas-customizadas
+* Diretivas também ficam dentro de Declarations
 
+* **ElementRef:** classe que representa a referência de qualquer elemento ou qualquer tag do DOM
+* Se eu quiser que a diretiva seja inserida em tags específicas, por exemplo, em parágrafos eu devo fazer **selector: 'p[fundoAmarelo]'**
+
+* Devemos evitar a utilização do ElementRef, porque ele acessa diretamente a tag, no exemplo a tag p, do DOM e isso pode trazer vulnerabilidade para aplicação, como ataques XSS, que são de cross-site scripting. Ou seja, a melhor prática é o Renderer
 
 ### Diretivas: HostListener e HostBinding
-
+* **HostListener:** escutar o evento do elemento hospedeiro, que no caso do exemplo é o p 
+* **HostBinding:** permite que façamos a ligação/associação de determinado atributo da diretiva a um determinado atributo do elemento HTML
 
 ### Diretivas: Input e Property Binding
 
