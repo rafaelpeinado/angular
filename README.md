@@ -440,6 +440,15 @@ Uma maneira de fazer navegação segura entre objetos
 * ng g s cursos/cursos
 
 ### Injeção de Dependência (DI) + como usar um serviço em um componente
+O que é dependência?
+* Classe1 precisa da OutraClasse para funcionar
+  * Classe1 <- Outra Classe
+* Podemos fazer a Injeção de Dependências de três formas:
+  * Construtores
+  * Métodos setters
+  * Atributos
+
+
 
 
 ### Escopo de instâncias de serviços e módulos (singleton e várias instâncias)

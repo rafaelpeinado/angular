@@ -10,14 +10,14 @@ import { CursosService } from './cursos.service';
 export class CursosComponent implements OnInit {
 
   public cursos: string[] = [];
-  private _cursosService!: CursosService;
+  // private _cursosService!: CursosService;
 
   constructor(
-
+    private _cursosService: CursosService,
   ) {
     // instanciar manualmente não é a melhor prática, pois se precisar de um parâmetro desse construtor,
     // precisaríamos fazer toda a cadeia de importações
-    this._cursosService = new CursosService();
+    // this._cursosService = new CursosService();
   }
 
   ngOnInit(): void {
