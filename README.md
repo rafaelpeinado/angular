@@ -467,5 +467,37 @@ Quando colocamos a classe no providers do Módulo, ela vai ser instanciada apena
 * Quando definimos um atributo ou método como static, dizemos que não precisamos da instância da Classe para poder acessá-lo
 
 ### Injetando um serviço em outro serviço
+[Exemplo](./projetos/servicos/src/app/shared/log.service.ts)
+
+
+## Pipes (Filtros)
+### Pipes (usando pipes, parâmetros e pipes aninhados)
+* Transforma um valor e exibe o valor transformado dentro do template
+* [Documentação Pipes](https://angular.io/api?query=pipe)
+* Todos pipes fazem parte do pacote @angular/common e não precisa importar, pois faz parte do **BrowserModule e CommonModule**
+
+### Criando um Pipe
+* ng g p camel-case
+* Ele também precisa ser declarado no module em que foi criado
+
+### Aplicando Locale (internacionalização) nos Pipes
+* Do padrão 4.5 para 4,5
+* O Angular já vem como padrão o Inglês Americano
+
+* No módulo principal precisamos fazer um provider do LOCALE_ID, que é um Token. Quando criamos tokens, é para não criar colisão na aplicação
+  * Existem três formas de fazer a injeção de dependências:
+    * **useValue:** podemos passar apenas um valor
+    * **useClass:** nome da classe
+    * **useFactory:** usa o padrão de projeto Factory
+
+O ideal é criar um serviço de Settings para configurações globais, como por exemplo, configurações da aplicação, nome do usuário etcc, melhor criar um serviço global
+
+### Pipes: Criando um Pipe Puro
+
+
+### Pipes: Criando um Pipe Impuro
+
+
+### Pipes: Async (Assíncrono)
 
 
