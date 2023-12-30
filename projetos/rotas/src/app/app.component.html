@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink="" class="brand-logo right">Rotas</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li routerLink="/login" routerLinkActive="active"><a>Login</a></li>
+      <li routerLink="/cursos" routerLinkActive="active"><a>Cursos</a></li>
+      <li [routerLink]="['curso', idCurso.value]" routerLinkActive="active"><a>Curso com id</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <p>Entre com o id do curso</p>
+  <input #idCurso>
+  <router-outlet></router-outlet>
+</div>
+
+

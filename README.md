@@ -526,3 +526,14 @@ Pipe async serve tanto para Promise, quanto para Observable
 * **forChild** para funcionalidades
 * **tag <router-outlet>:** é o que permite ter suporte a rotas
 * No index.html temos uma tag base href que já aponta para /. Podemos mudar o valor do href para configurar um namespace para as rotas. Se colocarmos href="/login" não significa que irá redirecionar para a rota de login. É apenas o nome do namespace. Nesse caso a app ficaria localhost:4200/login/login - caso a rota de login seja ativada.
+
+### Rotas: RouterLink: definindo rotas no template
+* routerLink direciona para as rotas cadastradas em routing
+
+### Rotas: Aplicando CSS em rotas ativas
+* routerLinkActive: quando a rota estiver ativa, o item ficará marcado.
+
+### Rotas: Definindo e extraindo parâmetros de roteamento
+Para passar parâmetros para a rota, usamos por exemplo, cursos/**:id**
+* ao usar [routerLink] login, cursos e curso/:id são rotas raiz do projeto, então a / é opcional
+* **ActivatedRoute:** podemos injetar no construtor para pegar detalhes da rota como, por exemplo, os parâmetros
