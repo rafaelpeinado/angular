@@ -537,3 +537,19 @@ Pipe async serve tanto para Promise, quanto para Observable
 Para passar parâmetros para a rota, usamos por exemplo, cursos/**:id**
 * ao usar [routerLink] login, cursos e curso/:id são rotas raiz do projeto, então a / é opcional
 * **ActivatedRoute:** podemos injetar no construtor para pegar detalhes da rota como, por exemplo, os parâmetros
+
+
+### Escutando mudanças nos parâmetros de roteamento
+* não acontece mudanças, pois estamos usando no construtor e além disso, snapshot pega a foto apenas da primeira rota, ou seja, quando tem mudanças nos parâmetros do roteamento, por exemplo no ID do curso a casse já foi inicializada e não conseguimos obter o valor do novo parâmetro.
+* O **[this.activatedRoute.params](./projetos/rotas/src/app/curso-detalhe/curso-detalhe.component.ts)** é do tipo **Subscription** e por questão de boa prática, devemos usar o Subscription. 
+  * Já que this.activatedRoute.params retorna um BehaviorSubject, retorna um objeto de inscrição que podemos fazer um subscribe e ficar escutando, então por boa prática devemos usar o Subscription e quando o objeto for destruído, devemos fazer um unsubscribe.
+
+
+### Rotas Imperativas: Redirecionamento via código
+* this.router.navigate(['/nao-encontrado']);
+
+### Rotas: Definindo e extraindo parâmetros de url (query)
+* localhost:4200/cursos?pagina=1
+  * **?pagina=1:** é o parâmetro de query e também é uma forma de passar parâmetros opcionais para a rota
+
+
