@@ -6,3 +6,4 @@ Os cursos foram separados por curso em cada branch. Ou pode clicar nos links aba
 * [Pluralsight - The Big Picture](https://github.com/rafaelpeinado/angular/tree/pluralsight/the-big-picture)
 * [Pluralsight - Learning RxJS Operators by Example Playbook](https://github.com/rafaelpeinado/angular/tree/pluralsight/learning-rxjs-operators-by-exemple-playbook)
 * [Pluralsight - Unit Testing in Angular 12](https://github.com/rafaelpeinado/angular/tree/pluralsight/unit-testing-in-angular-12)
+* [Loiane - Angular](https://github.com/rafaelpeinado/angular/tree/loiane/angular)
