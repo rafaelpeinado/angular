@@ -506,3 +506,23 @@ O ideal para fazer esses filtros dos array em um projeto real, devemos seguir o 
 ### Pipes: Async (Assíncrono)
 Pipe async serve tanto para Promise, quanto para Observable
 
+
+## Rotas
+### Rotas: Introdução
+* **Single Page Applications (SPA):** 
+  * mudamos o conteúdo, fazemos navegação e a página não faz refresh. Ele apenas altera as hashes (endereço das páginas)
+  * Se fizesse refresh, ele recarregaria tudo novamente como nas páginas tradicionais.
+* Como funciona: 
+  * http://meuprojeto.com.br/usuarios
+    * **usuarios:** vai carregar um componente, por exemplo, ListaUsuariosComponent
+  * http://meuprojeto.com.br/usuarios/2/edit
+    * o Angular lê e identifica a rota
+    * **usuarios:** vai carregar um componente, por exemplo, ListaUsuariosComponent
+    * **2:** /usuarios/:id - UsuárioDetalhesComponent
+    * **edit:** UsuarioFormComponent
+
+### Rotas: Configurando rotas simples
+* **forRoot:** rotas para toda a aplicação, são rotas raiz da aplicação: página inicial, login ou de não encontrado
+* **forChild** para funcionalidades
+* **tag <router-outlet>:** é o que permite ter suporte a rotas
+* No index.html temos uma tag base href que já aponta para /. Podemos mudar o valor do href para configurar um namespace para as rotas. Se colocarmos href="/login" não significa que irá redirecionar para a rota de login. É apenas o nome do namespace. Nesse caso a app ficaria localhost:4200/login/login - caso a rota de login seja ativada.
