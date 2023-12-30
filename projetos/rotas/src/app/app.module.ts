@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
 import { CursosService } from './cursos/cursos.service';
 import { CursoNaoEncontradoComponent } from './curso-nao-encontrado/curso-nao-encontrado.component';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CursoNaoEncontradoComponent } from './curso-nao-encontrado/curso-nao-en
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // routing, // forma de criar um routing
   ],
   providers: [CursosService],
   bootstrap: [AppComponent]

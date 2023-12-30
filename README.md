@@ -554,3 +554,7 @@ Para passar parâmetros para a rota, usamos por exemplo, cursos/**:id**
   * usamos a diretiva **[queryParams]**
 
 
+### Criando um módulo de rotas
+* Atualmente o Angular CLI já cria as rotas dessa forma
+* As diretivas routerLink, routerLinkActive etc, pertencem ao RouterModule
+
