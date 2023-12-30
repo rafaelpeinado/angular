@@ -501,7 +501,7 @@ O ideal é criar um serviço de Settings para configurações globais, como por 
 No caso do exemplo, ao filtrar a lista e adicionar um novo curso, ainda assim só serão exibidos os valores anteriores, exceto os adicionados. Para conseguir visualiza os novo, precisa digitar um novo valor no filtro.
 
 ### Pipes: Criando um Pipe Impuro
-
+O ideal para fazer esses filtros dos array em um projeto real, devemos seguir o que foi feito na tag Maneira correta de usar filtros em projetos.
 
 ### Pipes: Async (Assíncrono)
 
