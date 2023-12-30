@@ -504,5 +504,5 @@ No caso do exemplo, ao filtrar a lista e adicionar um novo curso, ainda assim s√
 O ideal para fazer esses filtros dos array em um projeto real, devemos seguir o que foi feito na tag Maneira correta de usar filtros em projetos.
 
 ### Pipes: Async (Ass√≠ncrono)
-
+Pipe async serve tanto para Promise, quanto para Observable
 
