@@ -551,5 +551,6 @@ Para passar parâmetros para a rota, usamos por exemplo, cursos/**:id**
 ### Rotas: Definindo e extraindo parâmetros de url (query)
 * localhost:4200/cursos?pagina=1
   * **?pagina=1:** é o parâmetro de query e também é uma forma de passar parâmetros opcionais para a rota
+  * usamos a diretiva **[queryParams]**
 
 
