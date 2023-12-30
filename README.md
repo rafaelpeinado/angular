@@ -490,10 +490,15 @@ Quando colocamos a classe no providers do Módulo, ela vai ser instanciada apena
     * **useClass:** nome da classe
     * **useFactory:** usa o padrão de projeto Factory
 
-O ideal é criar um serviço de Settings para configurações globais, como por exemplo, configurações da aplicação, nome do usuário etcc, melhor criar um serviço global
+O ideal é criar um serviço de Settings para configurações globais, como por exemplo, configurações da aplicação, nome do usuário etc, melhor criar um serviço global
 
 ### Pipes: Criando um Pipe Puro
+* No AngularJS existia um filtro para filtrar valores de array e orderby, porém eles não vieram para o Angular 2 como pipes, pois o time do Angular informou que por questão de performance e minificação.
 
+* **Obs.: o filtroArray criado no exemplo não deve ser usado em projetos reais. A intenção apenas conhecer um pipe puro e um pipe impuro**
+
+* Um pipe puro não olha as modificações do valor que é passado como parâmetro no método transform do Pipe
+No caso do exemplo, ao filtrar a lista e adicionar um novo curso, ainda assim só serão exibidos os valores anteriores, exceto os adicionados. Para conseguir visualiza os novo, precisa digitar um novo valor no filtro.
 
 ### Pipes: Criando um Pipe Impuro
 
