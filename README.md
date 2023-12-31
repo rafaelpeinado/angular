@@ -567,5 +567,5 @@ Refatorando o AppRoutingModule e gerando um módulo de routing para Cursos
 
 
 ### Rotas Filhas
-
+Como todas as rotas repetem a parte /alunos, nós podemos criar rotas filhas. Além disso, se for rotas comuns sempre será apenas um componente renderizado, porém com rotas filhas podemos renderizar componentes pai e componentes filhos. Além disso, precisa colocar o <router-outlet> dentro do alunos componente
 
