@@ -560,4 +560,12 @@ Para passar parâmetros para a rota, usamos por exemplo, cursos/**:id**
 
 
 ### Criando um módulo de funcionalidade
+Refatorando código para garantir que cursos seja um módulo
+
+### Criando um módulo de rotas de funcionalidade
+Refatorando o AppRoutingModule e gerando um módulo de routing para Cursos
+
+
+### Rotas Filhas
+
 
