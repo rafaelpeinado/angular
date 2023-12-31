@@ -598,3 +598,11 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 * Guarda de rota é um serviço então, ng g s guards/auth-guard
 
 
+### Usando Guarda de Rotas: CanActivateChild
+* A diferença entre CanActivate e CanActivateChild é que a guarda de rotas filhas é mais específica para proteger o que o usuário pode ou não fazer naquele componente. Por exemplo, as vezes o usuário pode consultar, mas não pode excluir, editar ou criar.
+
+* Podemos criar uma guarda de rotas filhas genérica, em que fazemos a consulta no servidor ou então podemos criar um específico para cada módulo do projeto.
+
+* Se quisermos que o canActivateChild faça a verificação para todos, inclusive o componente pai, devemos inserir o Guard dentro do AppModule e AppRoutingModule.
+* Se quisermos só nas filhas, podemos inserir dentro do module Alunos, por exemplo.
+
