@@ -382,7 +382,7 @@ Parecido com laço for
 Quando usamos o *, a tradução do Angular é usar a tag ng-template
 
 ### Diretivas: ngClass
-[diretiva-ngClass](./projetos/diretivas/src/app/diretiva-ngstyle/)
+[diretiva-ngClass](./projetos/diretivas/src/app/diretiva-ngclass/)
 
 ### Diretivas: ngStyle
 [diretiva-ngStyle](./projetos/diretivas/src/app/diretiva-ngstyle/)
@@ -567,5 +567,13 @@ Refatorando o AppRoutingModule e gerando um módulo de routing para Cursos
 
 
 ### Rotas Filhas
-Como todas as rotas repetem a parte /alunos, nós podemos criar rotas filhas. Além disso, se for rotas comuns sempre será apenas um componente renderizado, porém com rotas filhas podemos renderizar componentes pai e componentes filhos. Além disso, precisa colocar o <router-outlet> dentro do alunos componente
+* Como todas as rotas repetem a parte /alunos, nós podemos criar rotas filhas. 
+* Além disso, se for rotas comuns sempre será apenas um componente renderizado, porém com rotas filhas podemos renderizar componentes pai e componentes filhos. 
+* Precisa colocar o <router-outlet> dentro do alunos componente
 
+### Rotas Filhas: desenvolvendo as telas
+* Inseri o provide do service Alunos no providedIn do Serviço
+* Não é possível passar um objeto por rotas no Angular
+
+
+### Rotas: Dica de Performance: Carregamento sob demanda (lazy loading)
