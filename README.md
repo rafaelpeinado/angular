@@ -588,3 +588,9 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 
 * Toda vez que usar o lazy loading, as rotas precisam manter um padrão, o que vai ser alterado em cursos, por exemplo
 
+
+### Rotas: Tela de Login e como não mostrar o Menu
+* Como não mostrar o menu já que estamos usando roteamento e estamos usando o router-outlet no nosso app component
+
+
+

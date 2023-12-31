@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { CursosService } from './cursos/cursos.service';
+import { AuthService } from './login/auth.service';
+import { FormsModule } from '@angular/forms';
 
+// import { CursosService } from './cursos/cursos.service';
 // import { CursosComponent } from './cursos/cursos.component';
 // import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
 // import { CursoNaoEncontradoComponent } from './cursos/curso-nao-encontrado/curso-nao-encontrado.component';
@@ -25,12 +27,14 @@ import { CursosService } from './cursos/cursos.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     // CursosModule,
     // AlunosModule,
     // routing, // forma de criar um routing
   ],
-  providers: [CursosService],
+  // providers: [CursosService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
