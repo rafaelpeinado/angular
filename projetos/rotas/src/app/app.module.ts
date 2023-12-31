@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './login/auth.service';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 
 // import { CursosService } from './cursos/cursos.service';
 // import { CursosComponent } from './cursos/cursos.component';
@@ -34,7 +35,10 @@ import { FormsModule } from '@angular/forms';
     // routing, // forma de criar um routing
   ],
   // providers: [CursosService],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

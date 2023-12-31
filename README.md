@@ -593,4 +593,8 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 * Como não mostrar o menu já que estamos usando roteamento e estamos usando o router-outlet no nosso app component
 
 
+### Usando Guarda de Rotas: CanActivate
+* Pode separar em qualquer lugar, mas o ideal é separar tudo em uma pasta chamada guards
+* Guarda de rota é um serviço então, ng g s guards/auth-guard
+
 
