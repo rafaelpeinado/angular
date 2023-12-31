@@ -577,3 +577,14 @@ Refatorando o AppRoutingModule e gerando um módulo de routing para Cursos
 
 
 ### Rotas: Dica de Performance: Carregamento sob demanda (lazy loading)
+A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. E quanto maior o arquivo é, mais demora para baixar e renderizar.
+* Ganha performance, pois o main fica menor
+* Segurança
+
+* Primeiro passo é organizar a aplicação em módulos
+  * é usado o loadChildren para fazer o carregamento do módulo com o **caminho completo** # Nome do Modulo
+  * Quando usamos o lazy loading, não podemos usar o import CursosModule no AppModule, por exemplo, mas não pode estar em nenhum outro lugar. **É necessário deletar o import e o CursosModule**
+  * No cursos routing, necessário apagar a rota cursos, porque o principal já foi configurado no AppModule
+
+* Toda vez que usar o lazy loading, as rotas precisam manter um padrão, o que vai ser alterado em cursos, por exemplo
+
