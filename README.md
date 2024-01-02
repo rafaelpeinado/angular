@@ -606,3 +606,15 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 * Se quisermos que o canActivateChild faça a verificação para todos, inclusive o componente pai, devemos inserir o Guard dentro do AppModule e AppRoutingModule.
 * Se quisermos só nas filhas, podemos inserir dentro do module Alunos, por exemplo.
 
+
+### Usando Guarda de Rotas: CanDeactivate
+* É para verificar se o usuário pode desativar a rota
+* Serve, por exemplo, quando o usuário está preenchendo um formulário e quando ele clica para ir para outro link, perguntar antes de quer perder as mudanças
+
+* Object<any>
+  * **<any>** é o diamond operator que serve para definir o tipo da classe, no caso do CanDeactivate é para definir o componente que estamos tentando desativar
+
+
+### Usando Guarda de Rotas: CanDeactivate com Interface Genérica
+* Para reutilizar em vários componentes.
+
