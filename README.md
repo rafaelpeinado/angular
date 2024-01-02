@@ -633,3 +633,9 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
      2. AlunoDetalhesResolver
      3. ngOnInit: AlunoDetalhesComponent
      4. Recebendo obj Aluno do resolver
+
+
+### Usando Guarda de Rotas: CanLoad: como não carregar o módulo sem permissão
+* No projeto atual, se entrarmos na url localhost:4200/alunos, o módulo alunos será baixado e em seguida será redirecionado para a tela de login, por causa do AuthGuard. Se o usuário não tinha permissão para acessar o módulo, ele foi carregado mesmo na memória mesmo assim.
+  
+* o canLoad precisa ser aplicado em todos os módulos que são lazy loading
