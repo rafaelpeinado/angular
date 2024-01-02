@@ -650,5 +650,8 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 
 
 ### Estilo de url: HTML5 e usando #
+Não usar o hash (#) é padrão de roteamento do HTML5, porém quando começamos a trabalhar com backend pode ser que a linguagem não aceite o padrão HTML5 e não vai reconhecer o link, ou quando é uma url de roteamento e quando é para fazer uma chamada ajax. Por isso, podemos usar a hash no projeto.
+* Basta inserir no AppRoutingModule
+  * imports: [RouterModule.forRoot(routes, { useHash: true })],
 
 
