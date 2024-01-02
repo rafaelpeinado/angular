@@ -9,6 +9,7 @@ import { AlunosService } from './alunos.service';
 import { FormsModule } from '@angular/forms';
 import { AlunosGuard } from '../guards/alunos.guard';
 import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
+import { AlunoDetalhesResolver } from './guards/aluno-detalhes.resolver';
 
 
 
@@ -27,6 +28,7 @@ import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
     AlunosService, // deixei no providedIn do service para testar
     AlunosGuard,
     AlunosDeactivateGuard,
+    AlunoDetalhesResolver,
   ]
 })
 export class AlunosModule { }

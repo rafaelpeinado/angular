@@ -618,3 +618,18 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 ### Usando Guarda de Rotas: CanDeactivate com Interface Genérica
 * Para reutilizar em vários componentes.
 
+
+### Usando Guarda de Rotas: Resolve: carregando dados antes da rota ser ativada
+* Quando acessamos detalhes do aluno, os dados só são carregados depois que o componente é renderizado pela rota do :id.
+* As vezes, o tempo de carregamento das informações pode ser sensível ao projeto e temos a necessidade de estar com tudo pronto antes do componente ser criado e renderizado na tela.
+
+* Nesse exemplo, o objeto a ser carregado vai ser aluno.
+
+* De acordo com a aula, a sequência que está sendo seguida é
+  1. Após fazer o login, quando acessamos a home é chamado o AuthGuard
+  2. Ao clicar em Alunos, chama novamente AuthGuard
+  3. Ao clicar em um aluno:
+     1. AlunosGuard
+     2. AlunoDetalhesResolver
+     3. ngOnInit: AlunoDetalhesComponent
+     4. Recebendo obj Aluno do resolver

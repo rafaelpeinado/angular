@@ -1,4 +1,4 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlunosService } from '../alunos.service';
@@ -20,9 +20,15 @@ export class AlunoDetalheComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.inscricao = this.activatedRoute.params.subscribe((params: any) => {
+    /*this.inscricao = this.activatedRoute.params.subscribe((params: any) => {
       this.aluno = this.alunosService.getAluno(+params['id']);
-    });
+    });*/
+    this.inscricao = this.activatedRoute.data.subscribe(
+      // (data: { aluno: Aluno }) => {
+      (data: Data) => {
+        console.log(data);
+        this.aluno = data.aluno;
+      });
   }
 
   ngOnDestroy(): void {
