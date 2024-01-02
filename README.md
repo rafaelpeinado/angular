@@ -639,3 +639,16 @@ A primeira coisa que a aplicação faz é baixar todos os arquivos do servidor. 
 * No projeto atual, se entrarmos na url localhost:4200/alunos, o módulo alunos será baixado e em seguida será redirecionado para a tela de login, por causa do AuthGuard. Se o usuário não tinha permissão para acessar o módulo, ele foi carregado mesmo na memória mesmo assim.
   
 * o canLoad precisa ser aplicado em todos os módulos que são lazy loading
+
+
+### Definindo rota padrão e wildcard (rota não encontrada)
+* Caso não tenha uma rota padrão para página não encontrada, é exibido um erro no console, pois ele verifica as rotas e se não achar, ele exibe um erro.
+
+* Quando entramos em uma rota para ser verificada e validada pelo Angular, ele vai verificar se a rota que foi entrada, se ela precisa ser validada como toda ou, quando são rotas filhas, alunos/1, podemos usar o prefixo da rota, com alunos, por exemplo.
+
+* [Angular Router: Empty paths, componentless, routes, and redirects](https://vsavkin.tumblr.com/post/146722301646/angular-router-empty-paths-componentless-routes)
+
+
+### Estilo de url: HTML5 e usando #
+
+
