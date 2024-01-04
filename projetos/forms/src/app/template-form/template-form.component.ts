@@ -29,6 +29,7 @@ export class TemplateFormComponent implements OnInit {
 
   public onSubmit(form: NgForm): void {
     console.log(form);
+    this.http.post('https://httpbin.org/post', form.value).subscribe((dados) => console.log(dados));
   }
 
   public consultaCEP(eventTarget: any, form: NgForm): void {
