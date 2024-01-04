@@ -711,3 +711,7 @@ Não usar o hash (#) é padrão de roteamento do HTML5, porém quando começamos
 Podem ser formulários ou campos
 
 
+### Forms (template driven) Mostrando mensagens de erro de validação
+* Geralmente as framework, por exemplo, Bootstrap já oferece validações de formulário
+* [Validation Bootstrap](https://getbootstrap.com/docs/5.3/forms/validation/)
+
