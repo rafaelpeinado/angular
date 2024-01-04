@@ -715,3 +715,16 @@ Podem ser formulários ou campos
 * Geralmente as framework, por exemplo, Bootstrap já oferece validações de formulário
 * [Validation Bootstrap](https://getbootstrap.com/docs/5.3/forms/validation/)
 
+
+### Forms (template driven) Desabilitando o botão de submit para formulário inválido
+Basta usar o parâmetro valid do formulário
+
+
+### Forms (Dica): Verificando dados do Form no template com JSON
+Essa dica serve para que possamos verificar os dados sem precisar ficar clicando no botão de submit
+* Pode ser criado um componente para teste e usar os parâmetros do formulário para exibir na tela.
+* Foi usado a tag pre do html
+
+
+
+
