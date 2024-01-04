@@ -53,8 +53,8 @@
   <div class="col-md-6">
     <label for="complemento" class="form-label">Complemento</label>
     <input type="text" class="form-control" [class.is-invalid]="!complemento.valid && complemento.touched"
-      id="complemento" placeholder="Complemento" name="complemento" [(ngModel)]="usuario.email"
-      #complemento="ngModel" aria-describedby="complemento">
+      id="complemento" placeholder="Complemento" name="complemento" [(ngModel)]="usuario.email" #complemento="ngModel"
+      aria-describedby="complemento">
   </div>
 
   <div class="col-12">
@@ -69,8 +69,8 @@
   <div class="col-md-5">
     <label for="bairro" class="form-label">Bairro</label>
     <input type="text" class="form-control" [class.is-invalid]="!bairro.valid && bairro.touched" id="bairro"
-      placeholder="Bairro" name="bairro" [(ngModel)]="usuario.email" #bairro="ngModel"
-      aria-describedby="bairro" required readonly>
+      placeholder="Bairro" name="bairro" [(ngModel)]="usuario.email" #bairro="ngModel" aria-describedby="bairro"
+      required readonly>
     <div *ngIf="!bairro.valid && bairro.touched" id="bairro" class="invalid-feedback">
       Bairro é obrigatório.
     </div>
@@ -79,8 +79,8 @@
   <div class="col-md-5">
     <label for="cidade" class="form-label">Cidade</label>
     <input type="text" class="form-control" [class.is-invalid]="!cidade.valid && cidade.touched" id="cidade"
-      placeholder="Cidade" name="cidade" [(ngModel)]="usuario.email" #cidade="ngModel"
-      aria-describedby="cidade" required readonly>
+      placeholder="Cidade" name="cidade" [(ngModel)]="usuario.email" #cidade="ngModel" aria-describedby="cidade"
+      required readonly>
     <div *ngIf="!cidade.valid && cidade.touched" id="cidade" class="invalid-feedback">
       E-mail inválido.
     </div>
@@ -89,8 +89,8 @@
   <div class="col-md-2">
     <label for="estado" class="form-label">Estado</label>
     <input type="text" class="form-control" [class.is-invalid]="!estado.valid && estado.touched" id="estado"
-      placeholder="Estado" name="estado" [(ngModel)]="usuario.email" #estado="ngModel"
-      aria-describedby="estado" required readonly>
+      placeholder="Estado" name="estado" [(ngModel)]="usuario.email" #estado="ngModel" aria-describedby="estado"
+      required readonly>
     <div *ngIf="!estado.valid && estado.touched" id="estado" class="invalid-feedback">
       E-mail inválido.
     </div>

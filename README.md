@@ -726,5 +726,5 @@ Essa dica serve para que possamos verificar os dados sem precisar ficar clicando
 * Foi usado a tag pre do html
 
 
-
-
+### Forms (template driven) Refatorando (simplificando) CSS e mensagens de erro
+* Property binding só vai precisar caso estejamos associando a uma variável do componente ou então a chamada de um método ou expressão
