@@ -732,5 +732,14 @@ Essa dica serve para que possamos verificar os dados sem precisar ficar clicando
 
 ### Forms (template driven) Forms group (agrupando dados)
 * inserir uma div que cubra todos os dados que queira agrupar e define uma diretiva chamada ngModelGroup e informe o nome do objeto
-* 
+  
+
+### Forms (template driven) Pesquisando endereço automaticamente com CEP
+* [ViaCEP](https://viacep.com.br/)
+
+### Forms (template driven) Populando compos com setValue e patchValue (autocomplete CEP)
+* **setValue:** Tem um ponto a se considerar que ao usar o **setValue** ele irá alterar todos os campos que estão sendo informado, inclusive os que já foram preenchidos, então precisamos pegar os valores já preenchidos com o form.value.nomeDoValor, porém se o formulário tiver muitos campos, não é muito interessante e dá trabalho.
+
+* **patchValue:** FormGroup é quem tem o patchValue. Altera somente os valores informados.
+
 
