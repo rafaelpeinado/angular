@@ -670,9 +670,44 @@ Não usar o hash (#) é padrão de roteamento do HTML5, porém quando começamos
 * Form já está no Component e não precisa do ngSubmit, podemos usar o próprio click
 
 
-## Formulários - Criando o projeto inicial com Bootstrap 3
+### Formulários - Criando o projeto inicial com Bootstrap 3
 * ng new forms --routing
 
 
+### Forms (template driven) Controles ngForm, ngSubmit e ngModel
+* variável local para fazer referência a esse formulário
+  * ngForm, ngSubmit e ngModel pertence ao FormsModule
+* associar cada campo de input ao campo do formulário
+
+
+### Forms (template driven) Inicializando valores com ngModel (two-way data-binding)
+* Funciona podemos usar two-way [()] ou apenas []
+
+
+### Forms (template driven) Módulos e FormsModule
+* Sempre precisamos importar o FormsModule
+
+
+### Forms (template driven) Aplicando validação nos campos
+* required: obrigatório
+* [Validators Docs Angular](https://angular.io/api?query=valida)
+* [How can I validate an email address in JavaScript?](https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript)
+* [HTML5 Form Validation Examples](https://www.the-art-of-web.com/html/html5-form-validation/)
+
+* Podemos usar pattern para regex ou no caso, já temos a diretiva email
+
+
+### Forms (template driven) Aplicando CSS na validação dos campos
+* ng-dirty
+* ng-touched
+* ng-invalid
+
+| Estado            | Sim        | Não          |
+|:------------------|:----------:|-------------:|
+| Controle visitado | ng-touched | ng-untouched |
+| Valor mudou       | ng-dirty   | ng-pristine  |
+| Controle válido   | ng-valid   | ng-invalid   |
+
+Podem ser formulários ou campos
 
 

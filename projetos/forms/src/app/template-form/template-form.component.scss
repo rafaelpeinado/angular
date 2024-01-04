@@ -1,0 +1,6 @@
+// colocamos touched, porque só vai mostrar que é inválido depois de dar foco no campo
+// e not form para não inserir essa validação na tag form
+
+.ng-invalid.ng-touched:not(form) {
+  border: 1px solid red;
+}
