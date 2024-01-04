@@ -728,3 +728,9 @@ Essa dica serve para que possamos verificar os dados sem precisar ficar clicando
 
 ### Forms (template driven) Refatorando (simplificando) CSS e mensagens de erro
 * Property binding só vai precisar caso estejamos associando a uma variável do componente ou então a chamada de um método ou expressão
+
+
+### Forms (template driven) Forms group (agrupando dados)
+* inserir uma div que cubra todos os dados que queira agrupar e define uma diretiva chamada ngModelGroup e informe o nome do objeto
+* 
+
