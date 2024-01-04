@@ -746,3 +746,22 @@ Essa dica serve para que possamos verificar os dados sem precisar ficar clicando
 ### Forms (template driven) Submetendo valores com HTTP POST
 * [Rest Test Test...](https://resttesttest.com/)
 
+
+## Formulário Reativos (data-driven)
+### Formulários reativos (data driven) Introdução
+* **Orientado a template:** formulário é criado e configurado no HTML. Angular deduz um FormGroup a partir do HTML
+* **Orientado a dados:** formulário é criado programaticamente e é sincronizado com o DOM/HTML
+
+O time do Angular prefere os formulários reativos
+
+
+### Formulários reativos: Configuração (Módulo e Componente)
+Primeira coisa é criar a variável que vai representar o formulário, do tipo FormGroup
+* FormGroup pertence ao ReactiveFormsModule
+
+
+### Formulários reativos: Criando um form com código Angular
+* Cada nome é um controle do formulário e cada campo é um controle de formulário, por isso usamos **FormControl()** e podemos passar o valor inicial e validadores.
+* Há duas formas de criar um formulário no Angular: 
+  * fazer um new FormGroup
+  * usar o FormBuilder que é injetado no construtor
