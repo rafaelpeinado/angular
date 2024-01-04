@@ -655,3 +655,24 @@ Não usar o hash (#) é padrão de roteamento do HTML5, porém quando começamos
   * imports: [RouterModule.forRoot(routes, { useHash: true })],
 
 
+## Formulários (Template Driven)
+### Formulários (template vs data / reativo) Introdução
+#### Template Driven
+* Formulário é criado e configurado no HTML
+* Validações são feitas no template HTML (como regex, required etc)
+* Angular cria/deduz um FormGroup do código HTML usando diretivas
+* Valores do form são submetidos com ngSubmit
+
+#### Data Driven (Reativo)
+* Formulário é criado e configurado no Componente
+* Validações são feitas no Component, no HTML só fazemos referência
+* Angular usa o FormGroup criado no component
+* Form já está no Component e não precisa do ngSubmit, podemos usar o próprio click
+
+
+## Formulários - Criando o projeto inicial com Bootstrap 3
+* ng new forms --routing
+
+
+
+
