@@ -813,3 +813,10 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 #### Classe vs Interface
 * **Classe:** podemos ter métodos com corpo, construtor e a implementação de uma classe normalmente
 * **Interface:** é apenas a assinatura que precisamos ter no objeto. Podemos ter atributos e métodos.
+
+
+### Formulários reativos: Serviço de consulta CEP + provideIn
+* **providedIn:** não precisa mais inserir nos providers dos módulos
+  * o Angular é inteligente o suficiente para saber onde vamos usar o serviço e vai criar um bundle no arquivo que é necessário.
+  * no providers, ele criar o código no bundle, mesmo se não tiver usando
+

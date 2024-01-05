@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EstadoBr } from '../models/estado-br';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DropdownService {
 
   constructor(
