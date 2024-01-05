@@ -805,3 +805,11 @@ Podemos usar controls ou get para obter a validação do formulário
 ### Formulários reativos: Verificar validação dos campos com botão submit
 Validação em que utiliza Object.keys() para passar por todos os campos e marcar como um campo invalido, caso os campos estejam vazios.
 
+
+### Formulários reativos: Criando um serviço de Estados Brasileiros
+* [Estados Brasileiros](https://raw.githubusercontent.com/felipefdl/cidades-estados-brasil-json/master/Estados.json)
+* [Plugin json2ts](https://marketplace.visualstudio.com/items?itemName=GregorBiswanger.json2ts)
+
+#### Classe vs Interface
+* **Classe:** podemos ter métodos com corpo, construtor e a implementação de uma classe normalmente
+* **Interface:** é apenas a assinatura que precisamos ter no objeto. Podemos ter atributos e métodos.

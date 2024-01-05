@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TemplateFormComponent } from './template-form.component';
 import { FormsModule } from '@angular/forms';
 import { CampoControlErroComponent } from '../campo-control-erro/campo-control-erro.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,6 +16,7 @@ import { CampoControlErroComponent } from '../campo-control-erro/campo-control-e
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     HttpClientModule,
   ]
 })
