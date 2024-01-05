@@ -771,3 +771,18 @@ Primeira coisa é criar a variável que vai representar o formulário, do tipo F
 * Usar diretiva **[formGroup]**
 * Para fazer associação com o formulário nos inputs, usamos o **formControlName**, enquanto no Template Driven usamos o **name**
 
+
+### Formulários reativos: Fazendo submit
+* podemos usar o **(ngSubmit)** também
+
+
+### Formulários reativos: Resetando o form
+* Usamos o método **reset()** do formulário.
+
+
+### Formulários reativos: Aplicando validação nos campos
+
+
+
+
+

@@ -1,8 +1,8 @@
-<form class="row g-3 mt-3" [formGroup]="formulario">
+<form class="row g-3 mt-3" [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <div class="col-12">
     <label for="nome" class="form-label">Nome</label>
     <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" aria-describedby="nome">
-    <div *id="nome" class="invalid-feedback">
+    <div id="nome" class="invalid-feedback">
       Nome é obrigatório.
     </div>
   </div>
@@ -19,6 +19,7 @@
 
   <div class="col-12">
     <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    <button class="btn btn-secondary mb-3 ms-1" (click)="resetar()">Cancelar</button>
   </div>
 
   <div class="mt-3">
