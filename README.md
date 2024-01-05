@@ -781,8 +781,10 @@ Primeira coisa é criar a variável que vai representar o formulário, do tipo F
 
 
 ### Formulários reativos: Aplicando validação nos campos
+* Usamos a classe **Validators**
 
 
-
+### Formulários reativos: Acesso ao FormControl no HTML e CSS e validação dos campos
+Podemos usar controls ou get para obter a validação do formulário
 
 

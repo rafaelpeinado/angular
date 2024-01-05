@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -14,7 +14,7 @@ export class DataFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     // this.formulario = new FormGroup({
@@ -23,8 +23,8 @@ export class DataFormComponent implements OnInit {
     // });
 
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null],
+      nome: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
     });
   }
 
@@ -36,11 +36,10 @@ export class DataFormComponent implements OnInit {
         // reseta o form
         this.resetar();
       },
-      (error: any) => alert('erro'));
+        (error: any) => alert('erro'));
   }
 
   public resetar(): void {
     this.formulario.reset();
   }
-
 }
