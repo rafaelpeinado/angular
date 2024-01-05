@@ -820,3 +820,7 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
   * o Angular é inteligente o suficiente para saber onde vamos usar o serviço e vai criar um bundle no arquivo que é necessário.
   * no providers, ele criar o código no bundle, mesmo se não tiver usando
 
+
+### Formulários reativos: Combobox simples (select)
+* o pipe **async** faz o subscribe e assim que o componente é destruído, ele faz o unsubscribe.
+

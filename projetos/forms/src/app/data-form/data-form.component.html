@@ -98,9 +98,11 @@
 
     <div class="col-md-2">
       <label for="estado" class="form-label">Estado</label>
-      <input type="text" class="form-control"
+      <select class="form-select"
         [class.is-invalid]="!formulario.get('endereco.estado')?.valid && formulario.get('endereco.estado')?.touched"
         id="estado" placeholder="Estado" formControlName="estado" aria-describedby="estado">
+        <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+      </select>
       <div *ngIf="!formulario.get('endereco.estado')?.valid && formulario.get('endereco.estado')?.touched" id="estado"
         class="invalid-feedback">
         Estado é obrigatório.
