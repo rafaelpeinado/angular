@@ -21,12 +21,85 @@
       class="invalid-feedback">
       E-mail é obrigatório.
     </div>
-    <div *ngIf="formulario.get('email')?.errors?.email" id="email"
-      class="invalid-feedback">
+    <div *ngIf="formulario.get('email')?.errors?.email" id="email" class="invalid-feedback">
       E-mail inválido.
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-3">
+      <label for="cep" class="form-label">CEP</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['cep'].valid && formulario.controls['cep'].touched" id="cep"
+        placeholder="CEP" formControlName="cep" aria-describedby="cep">
+      <div *ngIf="!formulario.controls['cep'].valid && formulario.controls['cep'].touched" id="cep"
+        class="invalid-feedback">
+        CEP é obrigatório.
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="numero" class="form-label">Número</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['numero'].valid && formulario.controls['numero'].touched" id="numero"
+        placeholder="Número" formControlName="numero" aria-describedby="numero">
+      <div *ngIf="!formulario.controls['numero'].valid && formulario.controls['numero'].touched" id="numero"
+        class="invalid-feedback">
+        Número é obrigatório.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="complemento" class="form-label">Complemento</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['complemento'].valid && formulario.controls['complemento'].touched"
+        id="complemento" placeholder="Complemento" formControlName="complemento" aria-describedby="complemento">
+    </div>
+
+    <div class="col-12">
+      <label for="rua" class="form-label">Rua</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['rua'].valid && formulario.controls['rua'].touched" id="rua"
+        placeholder="Rua" formControlName="rua" aria-describedby="rua">
+      <div *ngIf="!formulario.controls['rua'].valid && formulario.controls['rua'].touched" id="rua"
+        class="invalid-feedback">
+        Rua é obrigatório.
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <label for="bairro" class="form-label">Bairro</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['bairro'].valid && formulario.controls['bairro'].touched" id="bairro"
+        placeholder="Bairro" formControlName="bairro" aria-describedby="bairro">
+      <div *ngIf="!formulario.controls['bairro'].valid && formulario.controls['bairro'].touched" id="bairro"
+        class="invalid-feedback">
+        Bairro é obrigatório.
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <label for="cidade" class="form-label">Cidade</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['cidade'].valid && formulario.controls['cidade'].touched" id="cidade"
+        placeholder="Cidade" formControlName="cidade" aria-describedby="cidade">
+      <div *ngIf="!formulario.controls['cidade'].valid && formulario.controls['cidade'].touched" id="cidade"
+        class="invalid-feedback">
+        Cidade é obrigatório.
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <label for="estado" class="form-label">Estado</label>
+      <input type="text" class="form-control"
+        [class.is-invalid]="!formulario.controls['estado'].valid && formulario.controls['estado'].touched" id="estado"
+        placeholder="Estado" formControlName="estado" aria-describedby="estado">
+      <div *ngIf="!formulario.controls['estado'].valid && formulario.controls['estado'].touched" id="estado"
+        class="invalid-feedback">
+        Estado é obrigatório.
+      </div>
+    </div>
+  </div>
 
   <div class="col-12">
     <button type="submit" class="btn btn-primary mb-3">Submit</button>

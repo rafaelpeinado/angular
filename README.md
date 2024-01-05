@@ -788,3 +788,6 @@ Primeira coisa é criar a variável que vai representar o formulário, do tipo F
 Podemos usar controls ou get para obter a validação do formulário
 
 
+### Formulários reativos: Campos de endereço (migrando um form template driven para form reativo)
+* [Data Form](./projetos/forms/src/app/data-form/)
+
