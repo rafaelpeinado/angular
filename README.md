@@ -791,3 +791,13 @@ Podemos usar controls ou get para obter a validação do formulário
 ### Formulários reativos: Campos de endereço (migrando um form template driven para form reativo)
 * [Data Form](./projetos/forms/src/app/data-form/)
 
+
+### Formulários reativos: Form groups (agrupando dados)
+* Criar um novo this.formBuilder.group
+* inserir na div que agrupa todos os dados com o formGroupName
+* e usar formulario.get('endereco.cep') para acessar o nível do objeto
+
+
+
+
+

@@ -18,25 +18,36 @@ export class DataFormComponent implements OnInit {
 
   ngOnInit(): void {
     // this.formulario = new FormGroup({
-    //     nome: new FormControl(null),
-    //     email: new FormControl(null),
+    //   nome: new FormControl(null),
+    //   email: new FormControl(null),
+    //   endereco: new FormGroup({
+    //     cep: new FormControl(null),
+    //     numero: new FormControl(null),
+    //     complemento: new FormControl(null),
+    //     rua: new FormControl(null),
+    //     bairro: new FormControl(null),
+    //     cidade: new FormControl(null),
+    //     estado: new FormControl(null),
+    //   }),
     // });
 
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
-      cep: [null, Validators.required],
-      numero: [null, Validators.required],
-      complemento: [null],
-      rua: [null, Validators.required],
-      bairro: [null, Validators.required],
-      cidade: [null, Validators.required],
-      estado: [null, Validators.required],
+      endereco: this.formBuilder.group({
+        cep: [null, Validators.required],
+        numero: [null, Validators.required],
+        complemento: [null],
+        rua: [null, Validators.required],
+        bairro: [null, Validators.required],
+        cidade: [null, Validators.required],
+        estado: [null, Validators.required],
+      }),
     });
   }
 
   public onSubmit(): void {
-    console.log(this.formulario.value);
+    console.log(this.formulario);
     this.http.post('https://httpbin.org/post', this.formulario.value)
       .subscribe((dados) => {
         console.log(dados);
