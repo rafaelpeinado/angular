@@ -802,3 +802,6 @@ Podemos usar controls ou get para obter a validação do formulário
 * Diferente do template driven, nós podemos acessar os dados direto no componente, sem precisar enviar os parâmetros via template.
 
 
+### Formulários reativos: Verificar validação dos campos com botão submit
+Validação em que utiliza Object.keys() para passar por todos os campos e marcar como um campo invalido, caso os campos estejam vazios.
+
