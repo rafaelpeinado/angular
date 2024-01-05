@@ -765,3 +765,9 @@ Primeira coisa é criar a variável que vai representar o formulário, do tipo F
 * Há duas formas de criar um formulário no Angular: 
   * fazer um new FormGroup
   * usar o FormBuilder que é injetado no construtor
+
+
+### Formulários reativos: Sincronizando HTML com FormGroup
+* Usar diretiva **[formGroup]**
+* Para fazer associação com o formulário nos inputs, usamos o **formControlName**, enquanto no Template Driven usamos o **name**
+

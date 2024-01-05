@@ -1,1 +1,35 @@
-<p>data-form works!</p>
+<form class="row g-3 mt-3" [formGroup]="formulario">
+  <div class="col-12">
+    <label for="nome" class="form-label">Nome</label>
+    <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" aria-describedby="nome">
+    <div *id="nome" class="invalid-feedback">
+      Nome é obrigatório.
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email"
+      aria-describedby="email">
+    <div id="email" class="invalid-feedback">
+      E-mail inválido.
+    </div>
+  </div>
+
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  </div>
+
+  <div class="mt-3">
+    <pre>
+      Form válido: {{ formulario.valid }}
+    </pre>
+    <!-- <pre>
+      Form submetido: {{ formulario.submitted }}
+    </pre> -->
+    <pre>
+      Valores: <br>{{ formulario.value | json }}
+    </pre>
+  </div>
+</form>
