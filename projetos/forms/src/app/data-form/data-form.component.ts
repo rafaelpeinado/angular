@@ -60,4 +60,59 @@ export class DataFormComponent implements OnInit {
   public resetar(): void {
     this.formulario.reset();
   }
+
+  public consultaCEP(): void {
+    let cep: string = this.formulario.get('endereco.cep')?.value.replace(/\D/g, '');
+    if (cep) {
+      const validaCep: RegExp = /^[0-9]{8}$/;
+      if (validaCep.test(cep)) {
+        this.resetaDadosForm();
+        this.http.get(`https://viacep.com.br/ws/${cep}/json`)
+          .subscribe((dados) => this.populaDadosForm(dados));
+      }
+    }
+  }
+
+  private resetaDadosForm(): void {
+    this.formulario.patchValue({
+      endereco: {
+        cep: null,
+        complemento: null,
+        rua: null,
+        bairro: null,
+        cidade: null,
+        estado: null,
+      },
+    });
+  }
+
+  private populaDadosForm(dados: any): void {
+    // this.formulario.setValue({
+    //   nome: formulario.value.nome,
+    //   email: formulario.value.email,
+    //   endereco: {
+    //     cep: dados.cep,
+    //     numero: formulario.value.endereco.numero,
+    //     complemento: dados.complemento,
+    //     rua: dados.logradouro,
+    //     bairro: dados.bairro,
+    //     cidade: dados.localidade,
+    //     estado: dados.uf,
+    //   },
+    // });
+
+    this.formulario.patchValue({
+      endereco: {
+        cep: dados.cep,
+        complemento: dados.complemento,
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf,
+      },
+    });
+
+    // para atualizar um campo em específico
+    // this.formulario.get('nome')?.setValue('Rafael');
+  }
 }

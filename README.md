@@ -798,6 +798,7 @@ Podemos usar controls ou get para obter a validação do formulário
 * e usar formulario.get('endereco.cep') para acessar o nível do objeto
 
 
-
+### Formulários reativos: Autopopulando endereço com CEP (setValue e patchValue)
+* Diferente do template driven, nós podemos acessar os dados direto no componente, sem precisar enviar os parâmetros via template.
 
 
