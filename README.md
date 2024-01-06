@@ -824,3 +824,16 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 ### Formulários reativos: Combobox simples (select)
 * o pipe **async** faz o subscribe e assim que o componente é destruído, ele faz o unsubscribe.
 
+
+### Formulários reativos: Combobox com Objeto (ngValue e compareWith)
+* foi intencional não pegar do combobox, pois a ideia era pegar de endereços de memória diferente, então no exemplo foi setado um cargo com: 
+  * const cargo = { nome: 'Dev', nive: 'Pleno', desc: 'Dev Pl' };
+  * this.formulario.get('cargo')?.setValue(cargo);
+  * ao selecionar um cargo clicando no botão cargo, no combobox ficou exibindo Dev Jr, enquanto no formulário estava preenchido Dev Pl, isso porque o Angular trabalha com comparação no select e no combobox com **===**. **Sendo assim, ele faz a comparação de referência entre dois objetos, ou seja, uma referência de endereço de memória**. Mesmo que os dois objetos sejam iguais, mas estejam em endereço de memória diferentes, ele dá falso.
+* Se quisermos que o Angular compare os objetos, além da memória, devemos seguir a documentação da diretiva [NgSelectOption](https://angular.io/api/forms/NgSelectOption). Se o campo é modificado, a diretiva informa que o campo mudou.
+* Ao mudar para ngValue, o combobox não é setado.
+* Para comparar os objetos usamos a diretiva compareWith da documentação [SelectControlValueAccessor](https://angular.io/api/forms/SelectControlValueAccessor). compareWith recebe duas funções e retorna um boolean se os objetos forem iguais ou não.
+
+* Quando for usar objetos, o ideal é usar ngValue e compareWith
+
+

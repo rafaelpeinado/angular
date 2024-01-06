@@ -16,6 +16,7 @@ export class DataFormComponent implements OnInit {
   public formulario!: FormGroup;
   // public estados: EstadoBr[] = [];
   public estados!: Observable<EstadoBr[]>;
+  public cargos: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,6 +30,7 @@ export class DataFormComponent implements OnInit {
     //   .subscribe((estados: EstadoBr[]) => this.estados = estados);
 
     this.estados = this.dropdownService.getEstadosBr();
+    this.cargos = this.dropdownService.getCargos();
 
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
@@ -56,6 +58,8 @@ export class DataFormComponent implements OnInit {
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
       }),
+
+      cargo: [null],
     });
   }
 
@@ -92,6 +96,16 @@ export class DataFormComponent implements OnInit {
       this.consultaCepService.consultaCEP(cep)
         .subscribe((dados) => this.populaDadosForm(dados));
     }
+  }
+
+  public setarCargo(): void {
+    // foi intencional não pegar do combobox, pois a ideia era pegar de endereços de memória diferentes
+    const cargo = { nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl' };
+    this.formulario.get('cargo')?.setValue(cargo);
+  }
+
+  public compararCargos(obj1: any, obj2: any) {
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 && obj2;
   }
 
   private verificaValidacoesForm(formGroup: FormGroup): void {
