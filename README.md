@@ -837,3 +837,5 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * Quando for usar objetos, o ideal é usar ngValue e compareWith
 
 
+### Formulários reativos: Combobox Múltiplo (Select Multiple)
+* precisa inserir o atributo multiple no select
