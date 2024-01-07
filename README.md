@@ -849,3 +849,9 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * Validators.required vai verificar se qualquer valor é nulo
 * Então devemos usar o Validators.pattern('true')
 
+
+### Formulários reativos: FormArray: Checkboxes Dinâmicos
+* Quando trabalhamos com múltiplos valores para um campo em Angular usamos o controle formArray, que serve tanto para checkbox dinâmicos ou formulários aninhados.
+* Precisamos criar um método que faz o build do formulário e que retorna uma lista de FormControl
+
+

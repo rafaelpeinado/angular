@@ -2,7 +2,7 @@ import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EstadoBr } from '../shared/models/estado-br';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,8 @@ export class DataFormComponent implements OnInit {
   public cargos: any[] = [];
   public tecnologias: any[] = [];
   public newsletterOp: any[] = [];
+
+  public frameworks: string[] = ['Angular', 'React', 'Vue', 'Sencha'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,13 +69,30 @@ export class DataFormComponent implements OnInit {
       tecnologias: [null],
       newsletter: ['s'], // para ficar como padrão
       termos: [null, Validators.pattern('true')],
+      frameworks: this.buildFrameworks(),
     });
+  }
+
+  public buildFrameworks(): FormArray {
+    const values = this.frameworks.map(() => new FormControl(false));
+    return this.formBuilder.array(values);
   }
 
   public onSubmit(): void {
     console.log(this.formulario);
+
+    let valueSubmit = Object.assign({}, this.formulario.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: (valueSubmit.frameworks as any[])
+        .map((v, i) => v ? this.frameworks[i] : null)
+        .filter((v) => v !== null),
+    });
+
+    console.log('teste', valueSubmit);
+
     if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', this.formulario.value)
+      this.http.post('https://httpbin.org/post', valueSubmit)
         .subscribe((dados) => {
           console.log(dados);
           // reseta o form

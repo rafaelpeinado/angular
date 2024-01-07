@@ -144,7 +144,7 @@
   </div>
 
   <div class="col-12">
-    <div class="form-check form-check-inline">
+    <div class="form-check form-check-inline ps-0">
       <label for="newsletter" class="form-label me-2">Newsletter</label>
     </div>
     <div class="form-check form-check-inline" *ngFor="let newsletter of newsletterOp">
@@ -167,6 +167,21 @@
     </div>
     <div *ngIf="!formulario.get('termos')?.valid" id="termos" class="invalid-feedback">
       Termos é obrigatório.
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="form-check form-check-inline ps-0">
+      <label class="form-check-label" for="frameworks">Frameworks</label>
+    </div>
+    <div class="form-check form-check-inline" formArrayName="frameworks" *ngFor="let framework of frameworks, let i = index">
+      <input class="form-check-input"
+        [class.is-invalid]="!formulario.get('frameworks')?.valid && formulario.get('frameworks')?.touched"
+        [formControlName]="i" type="checkbox" id="frameworks{{ framework }}">
+      <label class="form-check-label" for="frameworks{{ framework }}">{{ framework }}</label>
+    </div>
+    <div *ngIf="!formulario.get('frameworks')?.valid" id="frameworks" class="invalid-feedback">
+      Frameworks é obrigatório.
     </div>
   </div>
 
