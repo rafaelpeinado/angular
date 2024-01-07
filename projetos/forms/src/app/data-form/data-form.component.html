@@ -134,7 +134,7 @@
     <label for="tecnologias" class="form-label">Tecnologias</label>
     <select multiple class="form-select"
       [class.is-invalid]="!formulario.get('tecnologias')?.valid && formulario.get('tecnologias')?.touched"
-      id="tecnologias" placeholder="Tecnologias" formControlName="tecnologias" aria-describedby=" tecnologias">
+      id="tecnologias" placeholder="Tecnologias" formControlName="tecnologias" aria-describedby="tecnologias">
       <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc }}</option>
     </select>
     <div *ngIf="!formulario.get('tecnologias')?.valid && formulario.get('tecnologias')?.touched" id="tecnologias"
@@ -148,12 +148,25 @@
       <label for="newsletter" class="form-label me-2">Newsletter</label>
     </div>
     <div class="form-check form-check-inline" *ngFor="let newsletter of newsletterOp">
-      <input class="form-check-input" type="radio" formControlName="newsletter" id="newsletter{{ newsletter.valor }}" [value]="newsletter.valor">
+      <input class="form-check-input" type="radio" formControlName="newsletter" id="newsletter{{ newsletter.valor }}"
+        [value]="newsletter.valor">
       <label class="form-check-label" for="newsletter{{ newsletter.valor }}">{{ newsletter.desc }}</label>
     </div>
     <div *ngIf="!formulario.get('newsletter')?.valid && formulario.get('newsletter')?.touched" id="newsletter"
       class="invalid-feedback">
       Newsletter é obrigatório.
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input"
+        [class.is-invalid]="!formulario.get('termos')?.valid && formulario.get('termos')?.touched" type="checkbox"
+        formControlName="termos" id="aceitaTermos">
+      <label class="form-check-label" for="aceitaTermos">Aceito os termos</label>
+    </div>
+    <div *ngIf="!formulario.get('termos')?.valid" id="termos" class="invalid-feedback">
+      Termos é obrigatório.
     </div>
   </div>
 

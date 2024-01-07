@@ -845,5 +845,7 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * Todos as opções precisa ter o mesmo nome de controlName
 
 
-
+### Formulários reativos: Checkbox Toggle
+* Validators.required vai verificar se qualquer valor é nulo
+* Então devemos usar o Validators.pattern('true')
 
