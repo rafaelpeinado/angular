@@ -144,6 +144,20 @@
   </div>
 
   <div class="col-12">
+    <div class="form-check form-check-inline">
+      <label for="newsletter" class="form-label me-2">Newsletter</label>
+    </div>
+    <div class="form-check form-check-inline" *ngFor="let newsletter of newsletterOp">
+      <input class="form-check-input" type="radio" formControlName="newsletter" id="newsletter{{ newsletter.valor }}" [value]="newsletter.valor">
+      <label class="form-check-label" for="newsletter{{ newsletter.valor }}">{{ newsletter.desc }}</label>
+    </div>
+    <div *ngIf="!formulario.get('newsletter')?.valid && formulario.get('newsletter')?.touched" id="newsletter"
+      class="invalid-feedback">
+      Newsletter é obrigatório.
+    </div>
+  </div>
+
+  <div class="col-12">
     <!-- <button type="submit" class="btn btn-primary mb-3" [disabled]="!formulario.valid">Submit</button> -->
     <button type="submit" class="btn btn-primary mb-3">Submit</button>
     <button class="btn btn-secondary mb-3 ms-1" (click)="resetar()">Cancelar</button>

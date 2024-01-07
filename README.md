@@ -839,3 +839,11 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 
 ### Formulários reativos: Combobox Múltiplo (Select Multiple)
 * precisa inserir o atributo multiple no select
+
+
+### Formulários reativos: Radio Button (Botão do tipo Rádio)
+* Todos as opções precisa ter o mesmo nome de controlName
+
+
+
+
