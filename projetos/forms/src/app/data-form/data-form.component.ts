@@ -2,9 +2,10 @@ import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EstadoBr } from '../shared/models/estado-br';
 import { Observable } from 'rxjs';
+import { FormValidations } from '../shared/form-validations';
 
 @Component({
   selector: 'app-data-form',
@@ -75,7 +76,7 @@ export class DataFormComponent implements OnInit {
 
   public buildFrameworks(): FormArray {
     const values = this.frameworks.map(() => new FormControl(false));
-    return this.formBuilder.array(values);
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
   }
 
   public onSubmit(): void {
@@ -89,7 +90,7 @@ export class DataFormComponent implements OnInit {
         .filter((v) => v !== null),
     });
 
-    console.log('teste', valueSubmit);
+    console.log('valueSubmit', valueSubmit);
 
     if (this.formulario.valid) {
       this.http.post('https://httpbin.org/post', valueSubmit)
@@ -136,6 +137,23 @@ export class DataFormComponent implements OnInit {
 
   public setarTecnologias(): any {
     this.formulario.get('tecnologias')?.setValue(['java', 'javascript', 'php'])
+  }
+
+  // a nossa função de validação vai receber o min como valor
+  // e o Angular vai passar o FormArray
+  // no caso tive que refatorar por causa da versão do Angular
+  // e o Angular vai passar o AbstractControl que é o FormArray
+  public requiredMinCheckbox(min: number = 1): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return (control as FormArray).controls.filter((item) => item.value).length >= min ? null : { required: true };
+      // const totalChecked = (control as FormArray).controls
+      //   .map((v: AbstractControl) => v.value)
+      //   .reduce((total, current) => current ? total + current : total, 0);
+      // console.log('totalChecked', totalChecked);
+      // return totalChecked >= min ? null : { required: true };
+      // const totalChecked = (control as FormArray).controls.filter((item) => item.value).length;
+      // return totalChecked >= min ? null : { required: true };
+    }
   }
 
   private verificaValidacoesForm(formGroup: FormGroup): void {

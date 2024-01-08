@@ -855,3 +855,7 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * Precisamos criar um método que faz o build do formulário e que retorna uma lista de FormControl
 
 
+### Formulários reativos: Validação Customizada (FormArray Checkboxes)
+* Foi criado a própria validação, pois gostaríamos de verificar se pelo menos um item foi marcado.
+* Primeiro foi criado o método requiredMinCheckbox dentro da classe [DataFormComponent](./projetos/forms/src/app/data-form/data-form.component.ts) e depois exportado para uma classe de validador no shared em [FormValidations](./projetos/forms/src/app/shared/form-validations.ts)
+

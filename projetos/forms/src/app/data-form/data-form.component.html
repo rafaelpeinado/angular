@@ -159,10 +159,9 @@
   </div>
 
   <div class="col-12">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input"
-        [class.is-invalid]="!formulario.get('termos')?.valid && formulario.get('termos')?.touched" type="checkbox"
-        formControlName="termos" id="aceitaTermos">
+    <div class="form-check form-check-inline"
+      [class.is-invalid]="!formulario.get('termos')?.valid && formulario.get('termos')?.touched">
+      <input class="form-check-input" type="checkbox" formControlName="termos" id="aceitaTermos">
       <label class="form-check-label" for="aceitaTermos">Aceito os termos</label>
     </div>
     <div *ngIf="!formulario.get('termos')?.valid" id="termos" class="invalid-feedback">
@@ -174,14 +173,14 @@
     <div class="form-check form-check-inline ps-0">
       <label class="form-check-label" for="frameworks">Frameworks</label>
     </div>
-    <div class="form-check form-check-inline" formArrayName="frameworks" *ngFor="let framework of frameworks, let i = index">
-      <input class="form-check-input"
-        [class.is-invalid]="!formulario.get('frameworks')?.valid && formulario.get('frameworks')?.touched"
-        [formControlName]="i" type="checkbox" id="frameworks{{ framework }}">
+    <div [class.is-invalid]="!formulario.get('frameworks')?.valid && formulario.get('frameworks')?.touched"
+      class="form-check form-check-inline" formArrayName="frameworks"
+      *ngFor="let framework of frameworks, let i = index">
+      <input class="form-check-input" [formControlName]="i" type="checkbox" id="frameworks{{ framework }}">
       <label class="form-check-label" for="frameworks{{ framework }}">{{ framework }}</label>
     </div>
     <div *ngIf="!formulario.get('frameworks')?.valid" id="frameworks" class="invalid-feedback">
-      Frameworks é obrigatório.
+      Selecione pelo menos um framework.
     </div>
   </div>
 
