@@ -45,6 +45,10 @@
           class="invalid-feedback">
           CEP é obrigatório.
         </div>
+        <div *ngIf="formulario.get('endereco.cep')?.hasError('cepInvalido')" id="cep"
+          class="invalid-feedback">
+          CEP inválido.
+        </div>
       </div>
 
       <div class="col-md-3">

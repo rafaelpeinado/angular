@@ -859,3 +859,6 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * Foi criado a própria validação, pois gostaríamos de verificar se pelo menos um item foi marcado.
 * Primeiro foi criado o método requiredMinCheckbox dentro da classe [DataFormComponent](./projetos/forms/src/app/data-form/data-form.component.ts) e depois exportado para uma classe de validador no shared em [FormValidations](./projetos/forms/src/app/shared/form-validations.ts)
 
+
+### Formulários reativos: Validação Customizada (CEP)
+* Cria uma validação simples, sem retorno de função
