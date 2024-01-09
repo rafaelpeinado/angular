@@ -862,3 +862,13 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 
 ### Formulários reativos: Validação Customizada (CEP)
 * Cria uma validação simples, sem retorno de função
+
+
+### Formulários reativos: Validação entre dois campos (confirmar email)
+* O abstract tem dois atributos que pode ser um FormGroup ou um FormArray:
+  * root: a propriedade raiz de cep retorna o formulário, por exemplo
+  * parent: por exemplo, o cep tem como parent o endereço
+  * Deu um erro, informando que o campo não é válido, mesmo ele existindo. Porém, a validação começa a executar desde que começa a renderização da tela
+* [Documentação NG2 Validation](https://www.npmjs.com/package/ng2-validation)
+
+

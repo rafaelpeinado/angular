@@ -34,6 +34,17 @@
     </div>
   </div>
 
+  <div class="col-12">
+    <label for="confirmarEmail" class="form-label">Confirmar Email</label>
+    <input type="email" class="form-control"
+      [class.is-invalid]="formulario.controls['confirmarEmail'].hasError('equalsTo')" id="confirmarEmail"
+      placeholder="nome@email.com" formControlName="confirmarEmail" aria-describedby="email">
+    <div *ngIf="formulario.controls['confirmarEmail'].hasError('equalsTo')" id="confirmarEmail"
+      class="invalid-feedback">
+      E-mails não são iguais.
+    </div>
+  </div>
+
   <div class="col-12" formGroupName="endereco">
     <div class="row">
       <div class="col-md-3">
