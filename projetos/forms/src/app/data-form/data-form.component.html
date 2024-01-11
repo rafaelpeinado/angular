@@ -32,6 +32,15 @@
     <div *ngIf="formulario.get('email')?.errors?.email" id="email" class="invalid-feedback">
       E-mail inválido.
     </div>
+    <div *ngIf="formulario.get('email')?.status === 'PENDING'" id="email">
+      Validando e-mail...
+    </div>
+    <div *ngIf="formulario.get('email')?.status === 'VALID'" id="email">
+      E-mail válido!
+    </div>
+    <div *ngIf="formulario.get('email')?.hasError('emailInvalido')" id="email" class="invalid-feedback">
+      E-mail já cadastrado
+    </div>
   </div>
 
   <div class="col-12">

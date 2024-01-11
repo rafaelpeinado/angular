@@ -872,3 +872,9 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * [Documentação NG2 Validation](https://www.npmjs.com/package/ng2-validation)
 
 
+### Formulários reativos: Validação Assíncrona
+* O terceiro parâmetro do formBuilder group são as validações assíncronas
+* Ocorreu um erro no primeiro momento, pois não consegue ler a propriedade verificaEmailService como undefined. Existe um passo extra que precisamos fazer, porque na hora de executar a validação ele fica perdido, pois está tentando fazer a validação do campo. Porém, esse verificaEmailService é um serviço que também pertence ao componente. E o Angular se perde quanto ao escopo. Para isso não acontecer, precisamos associar o escopo da validação desse campo com o próprio componente, porque assim, a função validarEmail vai conseguir fazer esse bind (associação) e não vai ter problema de escopo.
+  * Uma outra forma de fazer isso: nós criamos um FormValidations que recebe o min como parâmetro. Nele inseríamos o serviço e não precisaríamos fazer o bind.
+* status: a propriedade tem vários valores, por exemplo, o PENDING, ou seja, enquanto estivermos buscando a resposta no servidor, o status será PENDING.
+

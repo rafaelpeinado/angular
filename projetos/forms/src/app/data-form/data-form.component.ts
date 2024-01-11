@@ -1,3 +1,4 @@
+import { VerificaEmailService } from './services/verifica-email.service';
 import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { EstadoBr } from '../shared/models/estado-br';
 import { Observable } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -28,9 +30,12 @@ export class DataFormComponent implements OnInit {
     private http: HttpClient,
     private dropdownService: DropdownService,
     private consultaCepService: ConsultaCepService,
+    private verificaEmailService: VerificaEmailService,
   ) { }
 
   ngOnInit(): void {
+    // this.verificaEmailService.verificarEmail('email@email.com')
+    //   .subscribe((dados) => console.log('dados', dados));
     // this.dropdownService.getEstadosBr()
     //   .subscribe((estados: EstadoBr[]) => this.estados = estados);
 
@@ -55,7 +60,9 @@ export class DataFormComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      // o terceiro parâmetro são as validações assíncronas
+      // email: [null, [Validators.required, Validators.email], this.validarEmail],
+      email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       confirmarEmail: [null, [FormValidations.equalsTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValidations.cepValidator]],
@@ -138,6 +145,13 @@ export class DataFormComponent implements OnInit {
 
   public setarTecnologias(): any {
     this.formulario.get('tecnologias')?.setValue(['java', 'javascript', 'php'])
+  }
+
+  public validarEmail(formControl: FormControl): ValidationErrors | null {
+    return this.verificaEmailService.verificarEmail(formControl.value)
+      .pipe(
+        map((emailExiste) => emailExiste ? { emailInvalido: true } : null),
+      );
   }
 
   // a nossa função de validação vai receber o min como valor
