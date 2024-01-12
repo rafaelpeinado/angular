@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EstadoBr } from '../shared/models/estado-br';
-import { Observable } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
-import { map } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -80,6 +80,30 @@ export class DataFormComponent implements OnInit {
       termos: [null, Validators.pattern('true')],
       frameworks: this.buildFrameworks(),
     });
+
+    // this.formulario.get('endereco.cep')?.valueChanges
+    //   .subscribe((value) => console.log('valor CEP: ', value));
+
+    // this.formulario.get('endereco.cep')?.statusChanges
+    //   .pipe(
+    //     distinctUntilChanged(),
+    //     tap((value) => console.log('status CEP: ', value)),
+    //   )
+    //   .subscribe((status) => {
+    //     if (status === 'VALID') {
+    //       this.consultaCepService.consultaCEP(this.formulario.get('endereco.cep')?.value)
+    //         .subscribe((dados) => this.populaDadosForm(dados));
+    //     }
+    //   });
+
+    this.formulario.get('endereco.cep')?.statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap((value) => console.log('status CEP: ', value)),
+        switchMap((status) => status === 'VALID' ?
+          this.consultaCepService.consultaCEP(this.formulario.get('endereco.cep')?.value) : empty()),
+      )
+      .subscribe((dados) => dados ? this.populaDadosForm(dados) : {});
   }
 
   public buildFrameworks(): FormArray {

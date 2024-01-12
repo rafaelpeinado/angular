@@ -60,7 +60,7 @@
         <label for="cep" class="form-label">CEP</label>
         <input type="text" class="form-control"
           [class.is-invalid]="!formulario.get('endereco.cep')?.valid && formulario.get('endereco.cep')?.touched"
-          id="cep" placeholder="CEP" formControlName="cep" aria-describedby="cep" (blur)="consultaCEP()">
+          id="cep" placeholder="CEP" formControlName="cep" aria-describedby="cep">
         <div *ngIf="!formulario.get('endereco.cep')?.valid && formulario.get('endereco.cep')?.touched" id="cep"
           class="invalid-feedback">
           CEP é obrigatório.

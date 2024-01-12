@@ -878,3 +878,21 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
   * Uma outra forma de fazer isso: nós criamos um FormValidations que recebe o min como parâmetro. Nele inseríamos o serviço e não precisaríamos fazer o bind.
 * status: a propriedade tem vários valores, por exemplo, o PENDING, ou seja, enquanto estivermos buscando a resposta no servidor, o status será PENDING.
 
+
+### Formulários reativos: Serviço de Mensagens de Erros
+**Importante**
+* **hasOwnProperty:** método JavaScript para verificar se a propriedade realmente existe
+* Foi criado um método para exibir a mensagem de erro de acordo com o campo.
+  * foi criado um config que recebe chave valor, com o nome do Validator, por exemplo, required e a mensagem que será exibida
+  * **validatorValue.requiredLength**
+  * return config[validatorName];
+
+
+### Formulários reativos: Reagindo à mudanças reativamente
+* Podemos usar os eventos do próprio Angular como, por exemplo, o de input para identificar mudanças do formulário
+* Ou usando a API de formulário
+* O **statusChanges** e o **valueChanges**, pode ser usado a nível de formulário ou a nível de controle.
+* **distinctUntilChanged:** só vamos capturar o valor quando ele for modificado
+* como temos dois observables alinhados, podemos usar o **switchMap()**, que pega o valor e retorna um observable
+
+
