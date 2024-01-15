@@ -918,4 +918,11 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * ng new requests-http --routing --style=scss -S
   * **-S:** não gerar arquivos de testes
 
+### Instalando Bootstrap 4
+* npm i bootstrap@4.1.3
+* npm i ngx-bootstrap@5.6.2
+
+
+
+
 
