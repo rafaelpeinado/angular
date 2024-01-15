@@ -896,3 +896,12 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 * como temos dois observables alinhados, podemos usar o **switchMap()**, que pega o valor e retorna um observable
 
 
+### Formulário reativos: Campo input customizado (ControlValueAcessor)
+* Para usar property binding no atributo for, é necessário informar attr.for para funcionar direito.
+* **ControlValueAcessor:** transforma o campo em um input HTML
+* **!!isReadOnly:** primeiro converte para boolean e depois verifica se é true ou false, ou não nulo ou não undefined
+* É necessário informar o provider **NG_VALUE_ACCESSOR**
+  * **multi: true**, pois quando estamos fazendo um provider de um serviço existe o Token, que nesse caso é o NG_VALUE_ACCESSOR. Em uma aplicação Angular nós teremos vários providers, várias instâncias desse mesmo token. Então o multi true, que para o campo INPUT_FIELD_VALUE_ACCESSOR, nós queremos usar o NG_VALUE_ACCESSOR em específico, mas pode ser que para um outro campo, o Angular automaticamente faça também esse provider e vai fazer com a classe específica que o Angular fizer a configuração. Então para não dar nenhum erro é sempre bom colocar o multi true.
+  * Podemos **NG_VALUE_ACCESSOR** em um campo customizado ou podemos também criar uma diretiva. Vemos vários exemplos na Internet, principalmente de campos de mascara que são através de diretivas e não de campos customizados, pois nesse caso também usará o NG_VALUE_ACCESSOR. E para cada campo de input podemos **TER APENAS UM NG_VALUE_ACCESSOR**.
+
+

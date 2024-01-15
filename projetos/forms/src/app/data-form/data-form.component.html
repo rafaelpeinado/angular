@@ -1,6 +1,6 @@
 <form class="row g-3 mt-3" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-  <div class="col-12">
-    <label for="nome" class="form-label">Nome</label>
+  <!--<div class="col-12">
+    <label for="nome" class="form-label">Nome</label> -->
     <!-- também podemos usar: -->
     <!-- [class.is-invalid]="!formulario.get('nome')?.valid && formulario.get('nome')?.touched" -->
     <!-- <input type="text" class="form-control"
@@ -10,7 +10,7 @@
       class="invalid-feedback">
       Nome é obrigatório.
     </div> -->
-    <input type="text" class="form-control"
+    <!-- <input type="text" class="form-control"
       [class.is-invalid]="!formulario.controls['nome'].valid && (formulario.controls['nome'].touched || formulario.controls['nome'].dirty)"
       id="nome" placeholder="Nome" formControlName="nome" aria-describedby="nome">
     <div
@@ -18,7 +18,9 @@
       id="nome" class="invalid-feedback">
       Nome é obrigatório.
     </div>
-  </div>
+  </div> -->
+
+  <app-input-field id="nome" formControlName="nome" label="Nome" type="text" [control]="formulario.get('nome')" placeholder="Nome"></app-input-field>
 
   <div class="col-12">
     <label for="email" class="form-label">Email</label>
@@ -65,8 +67,7 @@
           class="invalid-feedback">
           CEP é obrigatório.
         </div>
-        <div *ngIf="formulario.get('endereco.cep')?.hasError('cepInvalido')" id="cep"
-          class="invalid-feedback">
+        <div *ngIf="formulario.get('endereco.cep')?.hasError('cepInvalido')" id="cep" class="invalid-feedback">
           CEP inválido.
         </div>
       </div>

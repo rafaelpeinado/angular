@@ -1,0 +1,8 @@
+<div class="col-12">
+  <label [attr.for]="id" class="form-label">{{ label }}</label>
+  <input [type]="type" class="form-control" [(ngModel)]="value" [class.is-invalid]="!control.valid && (control.touched || control.dirty)"
+    [id]="id" [attr.aria-describedby]="id" [placeholder]="placeholder" [readOnly]="!!isReadOnly">
+  <div *ngIf="!control.valid && (control.touched || control.dirty)" [id]="id" class="invalid-feedback">
+    {{ label }} é obrigatório.
+  </div>
+</div>
