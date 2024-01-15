@@ -909,3 +909,9 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
 ### Formulários reativos: Classe base para Forms (herança no Angular)
 [Angular Reactive Forms: trigger validation on submit](https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/)
 
+
+
+### Formulários reativos: Combobox aninhado: Estado + Cidade
+* [Cidades Brasileiras](https://raw.githubusercontent.com/felipefdl/cidades-estados-brasil-json/master/Cidades.json)
+
+

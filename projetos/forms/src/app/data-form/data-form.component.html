@@ -112,7 +112,7 @@
         </div>
       </div>
 
-      <div class="col-md-5">
+      <!-- <div class="col-md-5">
         <label for="cidade" class="form-label">Cidade</label>
         <input type="text" class="form-control"
           [class.is-invalid]="!formulario.get('endereco.cidade')?.valid && formulario.get('endereco.cidade')?.touched"
@@ -121,14 +121,27 @@
           class="invalid-feedback">
           Cidade é obrigatório.
         </div>
+      </div> -->
+
+      <div class="col-md-4">
+        <label for="cidade" class="form-label">Cidade</label>
+        <select class="form-select"
+          [class.is-invalid]="!formulario.get('endereco.cidade')?.valid && formulario.get('endereco.cidade')?.touched"
+          id="cidade" placeholder="Cidade" formControlName="cidade" aria-describedby="cidade">
+          <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+        </select>
+        <div *ngIf="!formulario.get('endereco.cidade')?.valid && formulario.get('endereco.cidade')?.touched" id="cidade"
+          class="invalid-feedback">
+          Cidade é obrigatório.
+        </div>
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-3">
         <label for="estado" class="form-label">Estado</label>
         <select class="form-select"
           [class.is-invalid]="!formulario.get('endereco.estado')?.valid && formulario.get('endereco.estado')?.touched"
           id="estado" placeholder="Estado" formControlName="estado" aria-describedby="estado">
-          <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+          <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
         </select>
         <div *ngIf="!formulario.get('endereco.estado')?.valid && formulario.get('endereco.estado')?.touched" id="estado"
           class="invalid-feedback">
