@@ -905,3 +905,7 @@ Validação em que utiliza Object.keys() para passar por todos os campos e marca
   * Podemos **NG_VALUE_ACCESSOR** em um campo customizado ou podemos também criar uma diretiva. Vemos vários exemplos na Internet, principalmente de campos de mascara que são através de diretivas e não de campos customizados, pois nesse caso também usará o NG_VALUE_ACCESSOR. E para cada campo de input podemos **TER APENAS UM NG_VALUE_ACCESSOR**.
 
 
+
+### Formulários reativos: Classe base para Forms (herança no Angular)
+[Angular Reactive Forms: trigger validation on submit](https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/)
+

@@ -4,12 +4,13 @@ import { DropdownService } from './services/dropdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { FormsModule } from '@angular/forms';
+import { BaseFormComponent } from './base-form/base-form.component';
 
 
 
 @NgModule({
   declarations: [
-    InputFieldComponent
+    InputFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     DropdownService
   ],
   exports: [
-    InputFieldComponent
+    InputFieldComponent,
   ]
 })
 export class SharedModule { }

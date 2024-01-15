@@ -8,15 +8,15 @@ import { EstadoBr } from '../shared/models/estado-br';
 import { Observable, empty } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 
 @Component({
   selector: 'app-data-form',
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.scss']
 })
-export class DataFormComponent implements OnInit {
-
-  public formulario!: FormGroup;
+export class DataFormComponent extends BaseFormComponent implements OnInit {
+  // public formulario!: FormGroup;
   // public estados: EstadoBr[] = [];
   public estados!: Observable<EstadoBr[]>;
   public cargos: any[] = [];
@@ -31,7 +31,9 @@ export class DataFormComponent implements OnInit {
     private dropdownService: DropdownService,
     private consultaCepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService,
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     // this.verificaEmailService.verificarEmail('email@email.com')
@@ -111,7 +113,7 @@ export class DataFormComponent implements OnInit {
     return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
   }
 
-  public onSubmit(): void {
+  public submit(): void {
     console.log(this.formulario);
 
     let valueSubmit = Object.assign({}, this.formulario.value);
@@ -124,29 +126,13 @@ export class DataFormComponent implements OnInit {
 
     console.log('valueSubmit', valueSubmit);
 
-    if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', valueSubmit)
-        .subscribe((dados) => {
-          console.log(dados);
-          // reseta o form
-          this.resetar();
-        },
-          (error: any) => alert('erro'));
-      return;
-    }
-    console.log('formulario invalido');
-    this.verificaValidacoesForm(this.formulario);
-    // Object.keys(this.formulario.controls)
-    //   .map((campo) => {
-    //     console.log(campo);
-    //     const controle = this.formulario.get(campo);
-    //     // controle?.markAsDirty();
-    //     controle?.markAsTouched();
-    //   });
-  }
-
-  public resetar(): void {
-    this.formulario.reset();
+    this.http.post('https://httpbin.org/post', valueSubmit)
+      .subscribe((dados) => {
+        console.log(dados);
+        // reseta o form
+        this.resetar();
+      },
+        (error: any) => alert('erro'));
   }
 
   public consultaCEP(): void {
@@ -193,17 +179,6 @@ export class DataFormComponent implements OnInit {
       // const totalChecked = (control as FormArray).controls.filter((item) => item.value).length;
       // return totalChecked >= min ? null : { required: true };
     }
-  }
-
-  private verificaValidacoesForm(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls)
-      .map((campo) => {
-        const controle = formGroup.get(campo);
-        controle?.markAsTouched();
-        if (controle instanceof FormGroup) {
-          this.verificaValidacoesForm(controle);
-        }
-      });
   }
 
   private resetaDadosForm(): void {
