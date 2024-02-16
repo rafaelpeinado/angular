@@ -129,3 +129,66 @@ Um bom teste contar uma história. A história é que começamos em um determina
   * Queremos ter certeza de que incluímos o arrange, act e assert dentro do it()
 
 
+## Isolated Unit Tests
+### Testing a Pipe
+* [StrengthPipe](./02/demos/Module2-StartingCode/src/app/strength/strength.pipe.ts)
+  * é um componente simples de testar
+
+### Testing a Service
+* [MessageService](./02/demos/Module2-StartingCode/src/app/message.service.ts)
+* Temos um pequeno problema, pois o arrange está dentro do beforeEach, caso em que estamos violando a regra da história
+* Nesse caso, deveríamos deixar o service = new MessageService(); em cada teste, vamos duplicar alguns códigos, mas estamos deixando um pouco mais óbvio o que está acontecendo. Isso é bastante discutível, apenas porque é muito simples construir o serviço de mensagens, não requer dependências, não há nada complexo acontecendo lá, mas não pensaríamos muito se tivéssemos deixado essa chamada na inicialização no beforeEach(). Sim, o código está escondido de nós, mas uma vez que é uma linha de código tão simples e os testes são bastante óbvios em sua descrição sobre o que está acontecendo, que talvez não seja tão importante.
+
+### Testing a Component
+* [HeroesComponent](./02/demos/Module2-StartingCode/src/app/heroes/heroes.component.ts)
+* Como estamos escrevendo um teste unitário, não queremos informar um HeroService de verdade, além disso, o HeroService getHeroes faz uma chamada HTTP e não queremos fazer uma chamada HTTP, portanto não queremos usar o HeroService de verdade. 
+* E como é um teste unitário, não queremos testar duas unidades ao mesmo tempo.
+
+
+### Mocking to Isolate Code
+* Precisamos passar um objeto que se pareça com o HeroService
+* Jasmine pode nos ajudar a criar um objeto mock e vamos usar jasmine.createSpyObj(), pois isso cria um objeto falso que podemos controlar, podendo dizer quais métodos ele possui, quais métodos devem retornar quando são chamados e podemos perguntar quais métodos foram chamados em um teste.
+* 
+
+### Testing Interactions
+* A [linha 37](./02/demos/Module2-StartingCode/src/app/heroes/heroes.component.ts) executa this.heroService.deleteHero(hero).subscribe(); que é uma parte importante do componente. No teste [should remove the indicated hero from the heroes list](./02/demos/Module2-StartingCode/src/app/heroes/heroes.component.spec.ts), nós só testamos se o método funciona.
+* Vamos escrever um teste que verifique se esse método está correto. Esse teste é diferente do teste "should remove the indicated hero from the heroes list", pois esse teste foi um teste baseado em estado, verificamos se o estado do componente foi alterado. Fizemos isso verificando o comprimento do array HEROES.
+* O que precisamos fazer é verificar se deleteHero foi chamado com o parâmetro correto. Isso é chamado de **teste de interação**. Vamos verificar em nosso teste que uma certa interação aconteceu entre a classe que estamos testando e alguma outra classe, como neste caso o HeroService.
+  * **toHaveBeenCalled:** com esse comando, certificamos que o próprio deleteHero foi chamado.
+  * **xit:** Karma ignora o teste
+  * **toHaveBeenCalledWith:** verificar se o serviço foi chamado com o parâmetro especificado
+
+
+## Shallow Integration Tests
+### Introduction
+Testes de integração nos permitem não apenas testar um componente, mas também o modelo. Isso pode ser um grande benefício quando se trabalha para garantir que os componentes realmente façam o que devem fazer.
+
+### Debugging Techniques with Angular and Karma
+Bom olha o console do navegador
+
+### The TestBed
+
+
+### Using NO_ERRORS_SCHEMA
+
+
+### Testing Rendered HTML
+
+
+### NativeElement vs. DebugElement
+
+
+### More Complex Shallow Integration Tests
+
+
+### Mocking an Injected Service
+
+
+### Mocking Child Componentes
+
+
+### Dealing with Lists of Elements
+
+
+
+
