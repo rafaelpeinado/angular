@@ -1,5 +1,19 @@
 # Unit Testing in Angular 12
-[Joe Eames](https://www.linkedin.com/in/joeeames/) - Web Developer
+## Configurando aplicação via Docker
+* [Running Angular Unit Tests in Docker Container](https://cquelle.com/running-angular-unit-tests-in-docker-container/)
+* Criar um arquivo [compose.yaml](./02/demos/compose.yaml)
+* Criar arquivo [Dockerfile](./02/demos/Module2-StartingCode/Dockerfile)
+  * Instalar a versão alpine para ter o **apk** disponível
+  * Instalar o chromium para ser possível fazer testes unitários
+  * Inserir a variável CHROME_BIN
+* Alterar parâmetros do [karma.conf.js](./02/demos/Module2-StartingCode/karma.conf.js)
+  * Alterar singleRun para true
+  * Alterar browsers para ChromeHeadless
+  * Inserir customLauncher
+* **docker-compose up -d --build**
+* **docker exec -it Module2-StartingCode bash:** para rodar o bash
+
+[Joe Eames](https://www.linkedin.com/in/joeeames/) * Web Developer
 
 ## Course Introduction
 ### The Demo Application
