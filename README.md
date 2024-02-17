@@ -167,28 +167,46 @@ Testes de integração nos permitem não apenas testar um componente, mas també
 Bom olha o console do navegador
 
 ### The TestBed
-
+* Apenas para o uso do curso, o arquivo será criado de forma diferente
+  * [hero.component.shallow.spec.ts](./02/demos/Module2-StartingCode/src/app/hero/hero.component.shallow.spec.ts)
+* vamos usar o **TestBed** dentro do beforeEach
+  * O TestBed permite testar um componente e o templante rodando juntos. Então, vamos criar um módulo especial apenas para fins de teste
+  * **configureTestingModule:** estamos criando um módulo específico para testes. Aqui só deveremos inserir apenas um quando estamos escrevendo testes unitários.
+    * Nesse caso vamos nos importar apenas com o HeroComponent
+  * Agora temos que criar o componente
+    * **createComponent:** chamar essa função diz ao TestBed para usar o módulo de teste que foi criado na linha 7 e para construir o HeroComponent. Ele retorna um ComponentFixture
+      * Um **ComponentFixture** é basicamente um wrapper para um componente que é usado em testes e possui algumas outras propriedades, mais do que apenas um componente em si
+      * Podemos acessar a própria instância do componente, componentInstance que contém a propriedade HeroComponent real
+  * **detectChanges:** ao inserir o detectChanges, precisamos inserir o RouterModule, pois no console exibiu um erro porque no HTMl tem o routerLink, mas resolveremos no Using NO_ERRORS_SCHEMA
 
 ### Using NO_ERRORS_SCHEMA
-
+Vamos resolver o problema usando NO_ERRORS_SCHEMA
+* **schemas:** podemos inserir schemas que informam ao Angular como processar o HTML que foi entregue.
+  * **NO_ERRORS_SCHEMA:** diz ao Angular para não tentar validar o esquema, não tente validar o modelo pra os componentes que usamos.
+    * Há algumas desvantagens nisso. Também não poderemos validar o esquema que normalmente teríamos em Angular, mas essa é uma técnica que podemos usar para corrigir o problema que estamos tendo.
 
 ### Testing Rendered HTML
-
+* **nativeElement:** essa propriedade obtém um identificador para elemento DOM, que representa o contêiner do modelo.
+  * Para capturar os dados devemos usar detectChanges primeiro. Isso informa ao componente para executar a detecção de alterações e atualizar quaisquer ligações que possam existir no componente. Nesse exemplo temos o id e o nome
 
 ### NativeElement vs. DebugElement
-
+* **debugElement** é como o nativeElement, ele tem uma maneira de acessar o elemento raiz do nosso modelo, mas ao contrário do nativeElement, que está expondo a API do DOM subjacente, o debugElement é mais de um wrapper que possui um conjunto diferente de funcionalidade muito semelhante ao nativeElement.
+* no debugElement temos acessos às **diretivas**, poderíamos acessar o routerLink, por exemplo
+* Há outras coisas que o debugElement pode fazer. Além do nativeElement, podemos ter um identificador de componentInstance ao qual esse debugElement pertence. Em certas circunstâncias, isso poderia ser útl também. Geralmente, se queremos tratar de um componente, apenas solicitamos o fixture para o componentInstance, mas às vezes, se estamos trabalhando com vários componentes, precisamos conhecer o componente ao qual um determinado elemento pertence.
 
 ### More Complex Shallow Integration Tests
-
+* [heroes.component.shallow.spec.ts](./02/demos/Module2-StartingCode/src/app/heroes/heroes.component.shallow.spec.ts)
 
 ### Mocking an Injected Service
-
+* Antes do TestBed.configureTestingModule devemos criar um spy do Jasmine
+* providers: [{ provide: HeroService, useValue: mockHeroService }],
 
 ### Mocking Child Componentes
-
+* Vamos mockar um componente para não usar o NO_ERRORS_SCHEMA, pois ele tem efeitos colareis e ignora a renderização do HTML
+* Então criamos um componente dentro do teste e colocamos no declarations
 
 ### Dealing with Lists of Elements
-
+É o mesmo teste de verificar quantos itens tem no array, porém desta vez é ver quantos li têm no template.
 
 
 
