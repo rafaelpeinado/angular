@@ -209,4 +209,29 @@ Vamos resolver o problema usando NO_ERRORS_SCHEMA
 É o mesmo teste de verificar quantos itens tem no array, porém desta vez é ver quantos li têm no template.
 
 
+## Deep Integration Tests
+### Introduction
+É uma maneira de testar nossos componentes com seus filhos vivos.
+
+### Creating a Deep Integration Test
+Desta vez colocamos o fixture.detectChanges(); no beforeEach, porque queremos que os ciclos de vida sejam engatilhados em todo início de teste
+
+### Finding Elements by Directive
+* No Angular, um componente é, na verdade, uma subclasse de uma diretiva. É um tipo de diretiva mais especializado. Normalmente pensamos em diretivas como sendo uma atributo, como routerLink, e componentes como sendo um elemento, como o que temos aqui, o app-hero é um elemento, mas no funcionamento interno do Angular uma diretiva é na verdade a classe pai para ambas a diretivas e componentes, como nosso HeroComponent.
+
+### Integration Testing of Services
+* longhand providers
+* **HttpClientTestingModule:** cria um mock do HttpClient
+
+### Using the Inject Helper Function
+O HttpClientTestingModule não emitirá uma chamada real para o backend. Ele intercepta essa chamada e podemos ver o que acontece dentro do método getHero.
+
+* Podemos ter um identificador para o HeroService pelo TestBed.inject, conforme o exemplo comentado
+  * Há outra forma de fazer isso que é usando o inject no it, mas o TestBed é muito mais legível.
+
+### Implementing a Test with Mocked HTTP
+* Estamos avisando ao httpTestingController que haverá uma solicitação GET e queremos que ele espere que essa solicitação GET aconteça, e fazemos isso por meio do método expectOne.
+
+* o método **flush** nos permite decidir quais dados enviar de volta quando a chamada for feita.
+* o método **verify** verifica se foram apenas as solicitações que esperávamos e exatamente essas e nenhuma solicitação extra.
 
