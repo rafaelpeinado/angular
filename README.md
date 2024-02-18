@@ -270,3 +270,34 @@ Vamos criar um routerLink fake
 * **injector.get(RouterLinkDirectiveStub):** identificador para classe RouterLinkDirectiveStub
 
 
+## Advanced Topics
+[hero-detail.component.ts](./02/demos/Module2-StartingCode/src/app/hero-detail/hero-detail.component.ts)
+
+### Adding Async Code
+Foi criado um código assíncrono debounce para simular uma chamada assíncrona.
+
+### Basic Async Testing
+* Primeiramente dá erro no teste, porque o teste precisaria esperar 250ms para finalizar o teste, já que é o que acontece com o debounce.
+* Apenas inserir um setTimeout nos dá um falso positivo, visto que se tirarmos o updateHero do código, ele continuaria funcionando.
+* Informar o parâmetro **done** já informa ao Jasmine saberá que agora se trata de um teste assíncrono.
+  * Usar o setTimeout deixará os testes lentos se aumentarmos a quantidade de testes usando o setTimeout
+
+### Using the fakeAsync Helper Function
+* **[fakeAsync](https://angular.io/api/core/testing/fakeAsync):** podemos tratar toda nossa chamada assíncrona de forma síncrona, essencialmente, controlar o relógio enquanto nosso teste está em execução. Dentro do nosso componente estamos esperando 250ms antes de chamar o updateHero. Então podemos dizer ao nosso teste avançar para 250ms entre a nossa chamada para salver e a nossa expect.
+  * Envolve uma função a ser executada na zona fakeAsync
+    * As microtarefas são executadas manualmente chamando flushMicrotasks().
+    * Os temporizadores são síncronos; tick() simula a passagem assíncrona do tempo.
+* **[tick](https://angular.io/api/core/testing/tick):** usamos para avançar a quantidade de tempo informada como parâmetro
+  * nós vamos chamar nosso método save e o tick vai avançar 250 ms e chamar qualquer código que deva ser chamado dentro daquele período de tempo.
+* **flush:** se não soubermos exatamente quanto tempo esperar
+
+### Using the waitForAsync Helper Function
+* Usado para quando estamos usando **Promises** no código
+* **whenStable:** diz para esperar por quaisquer Promises que estão esperando para serem resolvidas, espere que elas sejam resolvidas e execute o código. 
+  * Esse método não é recomendado, usar o fakeAsync faz mais sentido.
+
+### Code Coverage
+* ng test --no-watch --code-coverage
+* Ele usa uma ferramenta chamada Istanbul
+
+
