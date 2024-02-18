@@ -235,3 +235,38 @@ O HttpClientTestingModule não emitirá uma chamada real para o backend. Ele int
 * o método **flush** nos permite decidir quais dados enviar de volta quando a chamada for feita.
 * o método **verify** verifica se foram apenas as solicitações que esperávamos e exatamente essas e nenhuma solicitação extra.
 
+
+## Testing DOM Interaction and Routing Components
+[heroes.component.deep.spec.ts](./02/demos/Module2-StartingCode/src/app/heroes/heroes.component.deep.spec.ts)
+
+### Triggering Events on Elements
+* **triggerEventHandler:** Aciona o evento pelo seu nome se houver um ouvinte correspondente na coleção de ouvintes do elemento.
+* **spyOn(fixture.componentInstance, 'delete'):** encontre o método delete em nossos HeroesComponent e apenas assista, veja se foi invocado.
+
+### Emitting Events from Children
+Não precisamos passar um valor quando fazemos o delete.emit, pois no código o listener não está esperando um valor, ele só está esperando que o evento aconteça para ele tomar alguma ação.
+
+### Raising Events on Child Directives
+Usando o evento delete do próprio componente pai
+
+### Interacting with Input Boxes
+Usamos o nativeElement, então não vamos ter uma referência ao debugElement, vamos ter uma referência ao elemento DOM subjacente, que precisaremos para definir o valor mais tarde.
+
+### Testing with ActivatedRout
+[hero-detail.component.spec.ts](./02/demos/Module2-StartingCode/src/app/hero-detail/hero-detail.component.spec.ts)
+
+#### Principles of Testing
+* **Don't test the framework:** isso significa que quando estamos testando componentes que pertencem o framework, não devemos verificar se o framework em si está funcionando corretamente, isso é tarefa dos criadores do framework.
+* **Test your code:** assuma que o framework esteja funcionando corretamente, então testamos se estamos interagindo corretamente com o framework
+
+### Dealing with ngModel
+Precisamos importar o FormsModule, que ao contrário do módulo de roteamento, o FormsModule é uma importação muito direta e não precisamos configurar nada.
+
+### Mocking the RouterLink
+Vamos criar um routerLink fake
+
+### Testing the RouterLink
+* **query(By.directive(RouterLinkDirectiveStub)):** isso nos dará o debugElement para a tag a que tem o routerLink. Uma vez que temos um identificador para esse debugElement, queremos um identificador para a diretiva real, a classe da diretiva.
+* **injector.get(RouterLinkDirectiveStub):** identificador para classe RouterLinkDirectiveStub
+
+
