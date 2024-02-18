@@ -300,4 +300,8 @@ Foi criado um código assíncrono debounce para simular uma chamada assíncrona.
 * ng test --no-watch --code-coverage
 * Ele usa uma ferramenta chamada Istanbul
 
+## Course Summary
+* **Isolated:** ao escrever testes unitários, você deve preferir testes isolados. Eles devem ser o teste padrão, porque são tão eficazes, não são muito frágeis e são fáceis de escrever em comparação com as alternativas
+* **Integration:** devemos usar quando queremos testar o template
+* Entre **Deep Integration tests** e **Shallow Integration tests**, preferir usar o shallow.
 
